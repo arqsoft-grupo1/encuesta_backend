@@ -1,0 +1,28 @@
+EncuestaBundle\Entity\Persona:
+    type: entity
+    table: null
+    repositoryClass: EncuestaBundle\Repository\PersonaRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nombre:
+            type: string
+            length: 255
+        apellido:
+            type: string
+            length: 255
+        dni:
+            type: integer
+            unique: true
+        legajo:
+            type: integer
+            unique: true
+        email:
+            type: string
+            length: 255
+            unique: true
+    lifecycleCallbacks: {  }

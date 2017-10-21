@@ -1,0 +1,11 @@
+EncuestaBundle\Entity\Director:
+    type: entity
+    table: null
+    repositoryClass: EncuestaBundle\Repository\DirectorRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    lifecycleCallbacks: {  }
