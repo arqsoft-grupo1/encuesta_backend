@@ -9,7 +9,8 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use FOS\RestBundle\View\View;
-use AppBundle\Entity\User;
+use OfertaBundle\Services\OfertaService;
+
 
 class OfertaController extends Controller
 {
@@ -18,12 +19,8 @@ class OfertaController extends Controller
      */
     public function getAction()
     {
-        // $restresult = $this->getDoctrine()->getRepository('AppBundle:User')->findAll();
-        //$restresult deberia devolver el string que contiene oferta.json
-        $appPath = $this->getParameter('kernel.root_dir');
-        $file = realpath($appPath . '/../var/oferta.json');
-        $restresult = file_get_contents($file);
-        // $restresult = '[{"id":1,"name":"tony","role":"community manager"},{"id":2,"name":"sandy","role":"digital content producer"}]';
+        $service = new OfertaService();
+        $restresult = $service -> getOferta();
         if ($restresult === null) {
             return new View("No existe una oferta", Response::HTTP_NOT_FOUND);
         }
