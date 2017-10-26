@@ -1,6 +1,6 @@
 <?php
 
-namespace OfertaBundle\Services;
+namespace AppBundle\Services;
 
 class OfertaService
 {

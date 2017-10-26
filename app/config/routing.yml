@@ -1,11 +1,12 @@
-oferta:
-    resource: "@OfertaBundle/Controller/"
-    type:     annotation
-    prefix:   /
+# oferta:
+#     resource: "AppBundle/Controller/OfertaController"
+#     type:     rest
+#     prefix:   /
 
-encuesta:
-    resource: "@EncuestaBundle/Resources/config/routing.yml"
-    prefix:   /
+# encuesta:
+#     resource: "AppBundle/Controller/EncuestaController"
+#     type:   annotation
+#     prefix:   /
 
 app:
     resource: '@AppBundle/Controller/'

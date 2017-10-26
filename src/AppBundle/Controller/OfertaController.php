@@ -1,6 +1,6 @@
 <?php
 
-namespace OfertaBundle\Controller;
+namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -9,10 +9,10 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use FOS\RestBundle\View\View;
-use OfertaBundle\Services\OfertaService;
+use AppBundle\Services\OfertaService;
 
 
-class OfertaController extends Controller
+class OfertaController extends FosRestController
 {
      /**
      * @Rest\Get("/api/oferta")
