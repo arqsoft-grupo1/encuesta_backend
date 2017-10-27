@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use FOS\RestBundle\View\View;
+use AppBundle\Services\EncuestaService;
+use AppBundle\Entity\Encuesta;
 
 class EncuestaController extends Controller
 {
@@ -19,12 +21,12 @@ class EncuestaController extends Controller
 	 public function postAction(Request $request)
 	 {
 		$service = new EncuestaService();
-		$data = new Encuesta;
+		$data = new Encuesta();
 
 		$legajo = $request->get('legajo');
 		$encuesta = $request->get('encuesta');
 
-		if(empty($name) || empty($role))
+		if(empty($legajo) || empty($encuesta))
 		{
 			return new View("Los datos son requeridos", Response::HTTP_NOT_ACCEPTABLE);
 		}
