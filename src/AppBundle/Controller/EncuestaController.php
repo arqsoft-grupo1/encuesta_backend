@@ -37,10 +37,30 @@ class EncuestaController extends Controller
 		$service->guardarEncuesta($data);
 
 
-		return new View("User Added Successfully", Response::HTTP_OK);
+		return new View("Se creo correctamente la encuesta", Response::HTTP_OK);
 	 }
 
+	 /**
+	* @Rest\Put("/api/encuesta/{id}")
+	*/
+	public function updateAction($id,Request $request)
+	{
+		$service = new EncuestaService();
+		$data = new Encuesta;
+		$legajo = $request->get('legajo');
+		$encuesta = $request->get('encuesta');
+		// Devuelve la encuesta guardada para dicho Legajo //
+		$encuesta_guardada = $service->getEncuestaByLegajo($legajo);
 
+		if (empty($encuesta_guardada)) {
+		    return new View("La encuesta no ha sido respondida aun", Response::HTTP_NOT_FOUND);
+		} elseif(!empty($legajo) && !empty($encuesta))
+		{
+			$encuesta_guardada->setLegajo($legajo);
+			$encuesta_guardada->setEncuesta($encuesta);
 
-
+			$servicio->guardarEncuesta();
+			return new View("Se actualizo correctamente la encuesta", Response::HTTP_OK);
+		}
+	}
 }

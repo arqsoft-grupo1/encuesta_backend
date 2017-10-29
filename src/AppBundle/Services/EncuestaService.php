@@ -9,11 +9,17 @@ class EncuestaService
     function guardarEncuesta($data) {
 
         $legajo = $data->getLegajo();
-        $fichero = "/home/mramos/$legajo.json";
+        $fichero = "/home/martin/$legajo.json";
 
         $encuesta = $data->getEncuesta();
 
         file_put_contents($fichero, $encuesta, FILE_APPEND | LOCK_EX);
+
+    }
+
+    function getEncuestaByLegajo($legajo) {
+        
+
 
     }
 
