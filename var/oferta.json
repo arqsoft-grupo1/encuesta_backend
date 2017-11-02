@@ -3,7 +3,7 @@
     {
       "id":1,
       "nombre": "Introduccion a la programacion",
-      "orden": "1",
+      "orden": "2",
       "comisiones": [
                       {
                         "id":1,
@@ -22,7 +22,27 @@
                                    }
                       }
 
-                    ]
+                    ],
+	"aprobada": true,
+	"es_correlativa_de": [
+				    {
+				      "id":6,
+				      "nombre": "Programacion con Objetos 1",
+				      "orden": "2",
+				      "comisiones": [
+						      {
+							"id":8,
+							"nombre":"Comision 1",
+							"horario": {
+								      "dias":["martes", "viernes"],
+								      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+								   }
+						      }
+						    ],
+					"aprobada": false
+				    }
+			
+				]
     },
     {
       "id":2,
@@ -48,6 +68,8 @@
                       {
                         "id":5,
                         "nombre":"Comision 3",
+<<<<<<< HEAD
+=======
                         "horario": {
                                       "dias":["martes", "viernes"],
                                       "hora":["16:00 a 18:00", "18:00 a 21:00"]
@@ -502,6 +524,7 @@
                       {
                         "id":3,
                         "nombre":"Comision 1",
+>>>>>>> ce66dc5796d92e2b84db0c03d5fca565abb5a027
                         "horario": {
                                       "dias":["lunes", "miercoles"],
                                       "hora":["16:00 a 18:00", "18:00 a 21:00"]
@@ -526,6 +549,8 @@
                       {
                         "id":6,
                         "nombre":"Comision 4",
+<<<<<<< HEAD
+=======
                         "horario": {
                                       "dias":["Miercoles", "Domingo"],
                                       "hora":["17:00 a 19:00", "08:00 a 13:00"]
@@ -588,6 +613,7 @@
                       {
                         "id":4,
                         "nombre":"Comision 2",
+>>>>>>> ce66dc5796d92e2b84db0c03d5fca565abb5a027
                         "horario": {
                                       "dias":["jueves", "sabado"],
                                       "hora":["17:00 a 19:00", "08:00 a 13:00"]
@@ -610,12 +636,32 @@
                                    }
                       }
 
-                    ]
+                    ],
+		"aprobada": true,
+		"es_correlativa_de": [
+					    {
+					      "id":4,
+					      "nombre": "Programacion con Objetos 1",
+					      "orden": "2",
+					      "comisiones": [
+							      {
+								"id":8,
+								"nombre":"Comision 1",
+								"horario": {
+									      "dias":["martes", "viernes"],
+									      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+									   }
+							      }
+							    ],
+						"aprobada": true
+					    }
+		
+					]
     },
     {
       "id":3,
       "nombre": "Matematica I",
-      "orden": "1",
+      "orden": "2",
       "comisiones": [
                       {
                         "id":7,
@@ -625,7 +671,72 @@
                                       "hora":["16:00 a 18:00", "18:00 a 21:00"]
                                    }
                       }
-                    ]
+                    ],
+	"aprobada": true
+    },
+    {
+      "id":4,
+      "nombre": "Matematica 2",
+      "orden": "3",
+      "comisiones": [
+                      {
+                        "id":8,
+                        "nombre":"Comision 1",
+                        "horario": {
+                                      "dias":["martes", "viernes"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      }
+                    ],
+	"aprobada": true
+    },
+    {
+      "id":5,
+      "nombre": "Programacion con Objetos 2",
+      "orden": "3",
+      "comisiones": [
+                      {
+                        "id":8,
+                        "nombre":"Comision 1",
+                        "horario": {
+                                      "dias":["martes", "viernes"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      }
+                    ],
+	"aprobada": false
+    },
+    {
+      "id":6,
+      "nombre": "Programacion con Objetos 1",
+      "orden": "2",
+      "comisiones": [
+		      {
+			"id":8,
+			"nombre":"Comision 1",
+			"horario": {
+				      "dias":["martes", "viernes"],
+				      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+				   }
+		      }
+		    ],
+	"aprobada": false
+    },
+    {
+      "id":7,
+      "nombre": "Programacion con Objetos 3",
+      "orden": "5",
+      "comisiones": [
+		      {
+			"id":8,
+			"nombre":"Comision 1",
+			"horario": {
+				      "dias":["martes", "viernes"],
+				      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+				   }
+		      }
+		    ],
+	"aprobada": false
     }
   ]
 }
