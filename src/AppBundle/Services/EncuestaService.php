@@ -7,7 +7,7 @@ namespace AppBundle\Services;
 class EncuestaService
 {
     function guardarEncuesta($data) {
-
+        
         $legajo = $data->getLegajo();
         $fichero = "/home/martin/$legajo.json";
 
@@ -18,7 +18,7 @@ class EncuestaService
     }
 
     function getEncuestaByLegajo($legajo) {
-        
+
 
 
     }
