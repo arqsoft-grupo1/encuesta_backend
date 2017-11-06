@@ -3,7 +3,7 @@
     {
       "id":1,
       "nombre": "Introduccion a la programacion",
-      "orden": "2",
+      "orden": 1,
       "comisiones": [
                       {
                         "id":1,
@@ -23,112 +23,12 @@
                       }
 
                     ],
-	"aprobada": true,
-	"es_correlativa_de": [
-				    {
-				      "id":6,
-				      "nombre": "Programacion con Objetos 1",
-				      "orden": "2",
-				      "comisiones": [
-						      {
-							"id":8,
-							"nombre":"Comision 1",
-							"horario": {
-								      "dias":["martes", "viernes"],
-								      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-								   }
-						      }
-						    ],
-					"aprobada": false
-				    }
-			
-				]
+	   "aprobada": true
     },
     {
       "id":2,
       "nombre": "Organizacion y arquitectura de computadoras",
-      "orden": "1",
-      "comisiones": [
-                      {
-                        "id":3,
-                        "nombre":"Comision 1",
-                        "horario": {
-                                      "dias":["lunes", "miercoles"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      },
-                      {
-                        "id":4,
-                        "nombre":"Comision 2",
-                        "horario": {
-                                      "dias":["jueves", "sabado"],
-                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
-                                   }
-                      },
-                      {
-                        "id":5,
-                        "nombre":"Comision 3",
-<<<<<<< HEAD
-=======
-                        "horario": {
-                                      "dias":["martes", "viernes"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      },
-                      {
-                        "id":6,
-                        "nombre":"Comision 4",
-                        "horario": {
-                                      "dias":["Miercoles", "Domingo"],
-                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
-                                   }
-                      }
-
-                    ]
-    },
-    {
-      "id":3,
-      "nombre": "Matematica I",
-      "orden": "1",
-      "comisiones": [
-                      {
-                        "id":7,
-                        "nombre":"Comision 1",
-                        "horario": {
-                                      "dias":["martes", "viernes"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      }
-                    ]
-    },
-	    {
-      "id":1,
-      "nombre": "Introduccion a la programacion",
-      "orden": "1",
-      "comisiones": [
-                      {
-                        "id":1,
-                        "nombre":"Comision 1",
-                        "horario": {
-                                      "dias":["martes, viernes"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      },
-                      {
-                        "id":2,
-                        "nombre":"Comision 2",
-                        "horario": {
-                                      "dias":["jueves", "sabado"],
-                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
-                                   }
-                      }
-
-                    ]
-    },
-    {
-      "id":2,
-      "nombre": "Organizacion y arquitectura de computadoras",
-      "orden": "1",
+      "orden": 1,
       "comisiones": [
                       {
                         "id":3,
@@ -163,12 +63,14 @@
                                    }
                       }
 
-                    ]
+                  ],
+  	   "aprobada": true
+
     },
     {
       "id":3,
       "nombre": "Matematica I",
-      "orden": "1",
+      "orden": 1,
       "comisiones": [
                       {
                         "id":7,
@@ -178,522 +80,563 @@
                                       "hora":["16:00 a 18:00", "18:00 a 21:00"]
                                    }
                       }
-                    ]
+                  ],
+  	   "aprobada": true
     },
-    {
-      "id":1,
-      "nombre": "Introduccion a la programacion",
-      "orden": "1",
-      "comisiones": [
-                      {
-                        "id":1,
-                        "nombre":"Comision 1",
-                        "horario": {
-                                      "dias":["martes, viernes"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      },
-                      {
-                        "id":2,
-                        "nombre":"Comision 2",
-                        "horario": {
-                                      "dias":["jueves", "sabado"],
-                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
-                                   }
-                      }
-
-                    ]
-    },
-    {
-      "id":2,
-      "nombre": "Organizacion y arquitectura de computadoras",
-      "orden": "1",
-      "comisiones": [
-                      {
-                        "id":3,
-                        "nombre":"Comision 1",
-                        "horario": {
-                                      "dias":["lunes", "miercoles"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      },
-                      {
-                        "id":4,
-                        "nombre":"Comision 2",
-                        "horario": {
-                                      "dias":["jueves", "sabado"],
-                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
-                                   }
-                      },
-                      {
-                        "id":5,
-                        "nombre":"Comision 3",
-                        "horario": {
-                                      "dias":["martes", "viernes"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      },
-                      {
-                        "id":6,
-                        "nombre":"Comision 4",
-                        "horario": {
-                                      "dias":["Miercoles", "Domingo"],
-                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
-                                   }
-                      }
-
-                    ]
-    },
-    {
-      "id":3,
-      "nombre": "Matematica I",
-      "orden": "1",
-      "comisiones": [
-                      {
-                        "id":7,
-                        "nombre":"Comision 1",
-                        "horario": {
-                                      "dias":["martes", "viernes"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      }
-                    ]
-    },    {
-      "id":1,
-      "nombre": "Introduccion a la programacion",
-      "orden": "1",
-      "comisiones": [
-                      {
-                        "id":1,
-                        "nombre":"Comision 1",
-                        "horario": {
-                                      "dias":["martes, viernes"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      },
-                      {
-                        "id":2,
-                        "nombre":"Comision 2",
-                        "horario": {
-                                      "dias":["jueves", "sabado"],
-                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
-                                   }
-                      }
-
-                    ]
-    },
-    {
-      "id":2,
-      "nombre": "Organizacion y arquitectura de computadoras",
-      "orden": "1",
-      "comisiones": [
-                      {
-                        "id":3,
-                        "nombre":"Comision 1",
-                        "horario": {
-                                      "dias":["lunes", "miercoles"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      },
-                      {
-                        "id":4,
-                        "nombre":"Comision 2",
-                        "horario": {
-                                      "dias":["jueves", "sabado"],
-                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
-                                   }
-                      },
-                      {
-                        "id":5,
-                        "nombre":"Comision 3",
-                        "horario": {
-                                      "dias":["martes", "viernes"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      },
-                      {
-                        "id":6,
-                        "nombre":"Comision 4",
-                        "horario": {
-                                      "dias":["Miercoles", "Domingo"],
-                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
-                                   }
-                      }
-
-                    ]
-    },
-    {
-      "id":3,
-      "nombre": "Matematica I",
-      "orden": "1",
-      "comisiones": [
-                      {
-                        "id":7,
-                        "nombre":"Comision 1",
-                        "horario": {
-                                      "dias":["martes", "viernes"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      }
-                    ]
-    },    {
-      "id":1,
-      "nombre": "Introduccion a la programacion",
-      "orden": "1",
-      "comisiones": [
-                      {
-                        "id":1,
-                        "nombre":"Comision 1",
-                        "horario": {
-                                      "dias":["martes, viernes"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      },
-                      {
-                        "id":2,
-                        "nombre":"Comision 2",
-                        "horario": {
-                                      "dias":["jueves", "sabado"],
-                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
-                                   }
-                      }
-
-                    ]
-    },
-    {
-      "id":2,
-      "nombre": "Organizacion y arquitectura de computadoras",
-      "orden": "1",
-      "comisiones": [
-                      {
-                        "id":3,
-                        "nombre":"Comision 1",
-                        "horario": {
-                                      "dias":["lunes", "miercoles"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      },
-                      {
-                        "id":4,
-                        "nombre":"Comision 2",
-                        "horario": {
-                                      "dias":["jueves", "sabado"],
-                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
-                                   }
-                      },
-                      {
-                        "id":5,
-                        "nombre":"Comision 3",
-                        "horario": {
-                                      "dias":["martes", "viernes"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      },
-                      {
-                        "id":6,
-                        "nombre":"Comision 4",
-                        "horario": {
-                                      "dias":["Miercoles", "Domingo"],
-                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
-                                   }
-                      }
-
-                    ]
-    },
-    {
-      "id":3,
-      "nombre": "Matematica I",
-      "orden": "1",
-      "comisiones": [
-                      {
-                        "id":7,
-                        "nombre":"Comision 1",
-                        "horario": {
-                                      "dias":["martes", "viernes"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      }
-                    ]
-    },    {
-      "id":1,
-      "nombre": "Introduccion a la programacion",
-      "orden": "1",
-      "comisiones": [
-                      {
-                        "id":1,
-                        "nombre":"Comision 1",
-                        "horario": {
-                                      "dias":["martes, viernes"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      },
-                      {
-                        "id":2,
-                        "nombre":"Comision 2",
-                        "horario": {
-                                      "dias":["jueves", "sabado"],
-                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
-                                   }
-                      }
-
-                    ]
-    },
-    {
-      "id":2,
-      "nombre": "Organizacion y arquitectura de computadoras",
-      "orden": "1",
-      "comisiones": [
-                      {
-                        "id":3,
-                        "nombre":"Comision 1",
-                        "horario": {
-                                      "dias":["lunes", "miercoles"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      },
-                      {
-                        "id":4,
-                        "nombre":"Comision 2",
-                        "horario": {
-                                      "dias":["jueves", "sabado"],
-                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
-                                   }
-                      },
-                      {
-                        "id":5,
-                        "nombre":"Comision 3",
-                        "horario": {
-                                      "dias":["martes", "viernes"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      },
-                      {
-                        "id":6,
-                        "nombre":"Comision 4",
-                        "horario": {
-                                      "dias":["Miercoles", "Domingo"],
-                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
-                                   }
-                      }
-
-                    ]
-    },
-    {
-      "id":3,
-      "nombre": "Matematica I",
-      "orden": "1",
-      "comisiones": [
-                      {
-                        "id":7,
-                        "nombre":"Comision 1",
-                        "horario": {
-                                      "dias":["martes", "viernes"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      }
-                    ]
-    },    {
-      "id":1,
-      "nombre": "Introduccion a la programacion",
-      "orden": "1",
-      "comisiones": [
-                      {
-                        "id":1,
-                        "nombre":"Comision 1",
-                        "horario": {
-                                      "dias":["martes, viernes"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      },
-                      {
-                        "id":2,
-                        "nombre":"Comision 2",
-                        "horario": {
-                                      "dias":["jueves", "sabado"],
-                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
-                                   }
-                      }
-
-                    ]
-    },
-    {
-      "id":2,
-      "nombre": "Organizacion y arquitectura de computadoras",
-      "orden": "1",
-      "comisiones": [
-                      {
-                        "id":3,
-                        "nombre":"Comision 1",
->>>>>>> ce66dc5796d92e2b84db0c03d5fca565abb5a027
-                        "horario": {
-                                      "dias":["lunes", "miercoles"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      },
-                      {
-                        "id":4,
-                        "nombre":"Comision 2",
-                        "horario": {
-                                      "dias":["jueves", "sabado"],
-                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
-                                   }
-                      },
-                      {
-                        "id":5,
-                        "nombre":"Comision 3",
-                        "horario": {
-                                      "dias":["martes", "viernes"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      },
-                      {
-                        "id":6,
-                        "nombre":"Comision 4",
-<<<<<<< HEAD
-=======
-                        "horario": {
-                                      "dias":["Miercoles", "Domingo"],
-                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
-                                   }
-                      }
-
-                    ]
-    },
-    {
-      "id":3,
-      "nombre": "Matematica I",
-      "orden": "1",
-      "comisiones": [
-                      {
-                        "id":7,
-                        "nombre":"Comision 1",
-                        "horario": {
-                                      "dias":["martes", "viernes"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      }
-                    ]
-    },    {
-      "id":1,
-      "nombre": "Introduccion a la programacion",
-      "orden": "1",
-      "comisiones": [
-                      {
-                        "id":1,
-                        "nombre":"Comision 1",
-                        "horario": {
-                                      "dias":["martes, viernes"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      },
-                      {
-                        "id":2,
-                        "nombre":"Comision 2",
-                        "horario": {
-                                      "dias":["jueves", "sabado"],
-                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
-                                   }
-                      }
-
-                    ]
-    },
-    {
-      "id":2,
-      "nombre": "Organizacion y arquitectura de computadoras",
-      "orden": "1",
-      "comisiones": [
-                      {
-                        "id":3,
-                        "nombre":"Comision 1",
-                        "horario": {
-                                      "dias":["lunes", "miercoles"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      },
-                      {
-                        "id":4,
-                        "nombre":"Comision 2",
->>>>>>> ce66dc5796d92e2b84db0c03d5fca565abb5a027
-                        "horario": {
-                                      "dias":["jueves", "sabado"],
-                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
-                                   }
-                      },
-                      {
-                        "id":5,
-                        "nombre":"Comision 3",
-                        "horario": {
-                                      "dias":["martes", "viernes"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      },
-                      {
-                        "id":6,
-                        "nombre":"Comision 4",
-                        "horario": {
-                                      "dias":["Miercoles", "Domingo"],
-                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
-                                   }
-                      }
-
-                    ],
-		"aprobada": true,
-		"es_correlativa_de": [
-					    {
-					      "id":4,
-					      "nombre": "Programacion con Objetos 1",
-					      "orden": "2",
-					      "comisiones": [
-							      {
-								"id":8,
-								"nombre":"Comision 1",
-								"horario": {
-									      "dias":["martes", "viernes"],
-									      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-									   }
-							      }
-							    ],
-						"aprobada": true
-					    }
-		
-					]
-    },
-    {
-      "id":3,
-      "nombre": "Matematica I",
-      "orden": "2",
-      "comisiones": [
-                      {
-                        "id":7,
-                        "nombre":"Comision 1",
-                        "horario": {
-                                      "dias":["martes", "viernes"],
-                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
-                                   }
-                      }
-                    ],
-	"aprobada": true
-    },
-    {
+	{
       "id":4,
-      "nombre": "Matematica 2",
-      "orden": "3",
+      "nombre": "Estructura de datos",
+      "orden": 2,
       "comisiones": [
                       {
-                        "id":8,
+                        "id":1,
                         "nombre":"Comision 1",
                         "horario": {
-                                      "dias":["martes", "viernes"],
+                                      "dias":["martes, viernes"],
                                       "hora":["16:00 a 18:00", "18:00 a 21:00"]
                                    }
+                      },
+                      {
+                        "id":2,
+                        "nombre":"Comision 2",
+                        "horario": {
+                                      "dias":["jueves", "sabado"],
+                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
+                                   }
                       }
-                    ],
-	"aprobada": true
+
+                    ]
     },
     {
       "id":5,
-      "nombre": "Programacion con Objetos 2",
-      "orden": "3",
+      "nombre": "Introduccion a Base de datos",
+      "orden": 2,
+      "comisiones": [
+                      {
+                        "id":3,
+                        "nombre":"Comision 1",
+                        "horario": {
+                                      "dias":["lunes", "miercoles"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      },
+                      {
+                        "id":4,
+                        "nombre":"Comision 2",
+                        "horario": {
+                                      "dias":["jueves", "sabado"],
+                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
+                                   }
+                      },
+                      {
+                        "id":5,
+                        "nombre":"Comision 3",
+                        "horario": {
+                                      "dias":["martes", "viernes"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      },
+                      {
+                        "id":6,
+                        "nombre":"Comision 4",
+                        "horario": {
+                                      "dias":["Miercoles", "Domingo"],
+                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
+                                   }
+                      }
+
+                    ]
+    },
+    {
+      "id":6,
+      "nombre": "Objetos I",
+      "orden": 2,
+      "comisiones": [
+                      {
+                        "id":7,
+                        "nombre":"Comision 1",
+                        "horario": {
+                                      "dias":["martes", "viernes"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      }
+                    ]
+    },
+    {
+      "id":7,
+      "nombre": "Matematica II",
+      "orden": 3,
+      "comisiones": [
+                      {
+                        "id":1,
+                        "nombre":"Comision 1",
+                        "horario": {
+                                      "dias":["martes, viernes"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      },
+                      {
+                        "id":2,
+                        "nombre":"Comision 2",
+                        "horario": {
+                                      "dias":["jueves", "sabado"],
+                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
+                                   }
+                      }
+
+                    ]
+    },
+    {
+      "id":8,
+      "nombre": "Redes",
+      "orden": 3,
+      "comisiones": [
+                      {
+                        "id":3,
+                        "nombre":"Comision 1",
+                        "horario": {
+                                      "dias":["lunes", "miercoles"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      },
+                      {
+                        "id":4,
+                        "nombre":"Comision 2",
+                        "horario": {
+                                      "dias":["jueves", "sabado"],
+                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
+                                   }
+                      },
+                      {
+                        "id":5,
+                        "nombre":"Comision 3",
+                        "horario": {
+                                      "dias":["martes", "viernes"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      },
+                      {
+                        "id":6,
+                        "nombre":"Comision 4",
+                        "horario": {
+                                      "dias":["Miercoles", "Domingo"],
+                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
+                                   }
+                      }
+
+                    ]
+    },
+    {
+      "id":9,
+      "nombre": "Objetos II",
+      "orden": 3,
+      "comisiones": [
+                      {
+                        "id":7,
+                        "nombre":"Comision 1",
+                        "horario": {
+                                      "dias":["martes", "viernes"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      }
+                    ]
+    },    {
+      "id":10,
+      "nombre": "Sistemas Operativos",
+      "orden": 3,
+      "comisiones": [
+                      {
+                        "id":1,
+                        "nombre":"Comision 1",
+                        "horario": {
+                                      "dias":["martes, viernes"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      },
+                      {
+                        "id":2,
+                        "nombre":"Comision 2",
+                        "horario": {
+                                      "dias":["jueves", "sabado"],
+                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
+                                   }
+                      }
+
+                    ]
+    },
+    {
+      "id":11,
+      "nombre": "Ingles I",
+      "orden": 3,
+      "comisiones": [
+                      {
+                        "id":3,
+                        "nombre":"Comision 1",
+                        "horario": {
+                                      "dias":["lunes", "miercoles"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      },
+                      {
+                        "id":4,
+                        "nombre":"Comision 2",
+                        "horario": {
+                                      "dias":["jueves", "sabado"],
+                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
+                                   }
+                      },
+                      {
+                        "id":5,
+                        "nombre":"Comision 3",
+                        "horario": {
+                                      "dias":["martes", "viernes"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      },
+                      {
+                        "id":6,
+                        "nombre":"Comision 4",
+                        "horario": {
+                                      "dias":["Miercoles", "Domingo"],
+                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
+                                   }
+                      }
+
+                    ]
+    },
+    {
+      "id":12,
+      "nombre": "Programacion Funcional",
+      "orden": 4,
+      "comisiones": [
+                      {
+                        "id":7,
+                        "nombre":"Comision 1",
+                        "horario": {
+                                      "dias":["martes", "viernes"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      }
+                    ]
+    },    {
+      "id":13,
+      "nombre": "Interfaces de usuario",
+      "orden": 4,
+      "comisiones": [
+                      {
+                        "id":1,
+                        "nombre":"Comision 1",
+                        "horario": {
+                                      "dias":["martes, viernes"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      },
+                      {
+                        "id":2,
+                        "nombre":"Comision 2",
+                        "horario": {
+                                      "dias":["jueves", "sabado"],
+                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
+                                   }
+                      }
+
+                    ]
+    },
+    {
+      "id":14,
+      "nombre": "Laboratorio de Sistemas operativos",
+      "orden": 4,
+      "comisiones": [
+                      {
+                        "id":3,
+                        "nombre":"Comision 1",
+                        "horario": {
+                                      "dias":["lunes", "miercoles"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      },
+                      {
+                        "id":4,
+                        "nombre":"Comision 2",
+                        "horario": {
+                                      "dias":["jueves", "sabado"],
+                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
+                                   }
+                      },
+                      {
+                        "id":5,
+                        "nombre":"Comision 3",
+                        "horario": {
+                                      "dias":["martes", "viernes"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      },
+                      {
+                        "id":6,
+                        "nombre":"Comision 4",
+                        "horario": {
+                                      "dias":["Miercoles", "Domingo"],
+                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
+                                   }
+                      }
+
+                    ]
+    },
+    {
+      "id":15,
+      "nombre": "Persistencia",
+      "orden": 4,
+      "comisiones": [
+                      {
+                        "id":7,
+                        "nombre":"Comision 1",
+                        "horario": {
+                                      "dias":["martes", "viernes"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      }
+                    ]
+    },    {
+      "id":16,
+      "nombre": "Ingles 2",
+      "orden": 4,
+      "comisiones": [
+                      {
+                        "id":1,
+                        "nombre":"Comision 1",
+                        "horario": {
+                                      "dias":["martes, viernes"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      },
+                      {
+                        "id":2,
+                        "nombre":"Comision 2",
+                        "horario": {
+                                      "dias":["jueves", "sabado"],
+                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
+                                   }
+                      }
+
+                    ]
+    },
+    {
+      "id":17,
+      "nombre": "Analisis Matematico I",
+      "orden": 5,
+      "comisiones": [
+                      {
+                        "id":3,
+                        "nombre":"Comision 1",
+                        "horario": {
+                                      "dias":["lunes", "miercoles"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      },
+                      {
+                        "id":4,
+                        "nombre":"Comision 2",
+                        "horario": {
+                                      "dias":["jueves", "sabado"],
+                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
+                                   }
+                      },
+                      {
+                        "id":5,
+                        "nombre":"Comision 3",
+                        "horario": {
+                                      "dias":["martes", "viernes"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      },
+                      {
+                        "id":6,
+                        "nombre":"Comision 4",
+                        "horario": {
+                                      "dias":["Miercoles", "Domingo"],
+                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
+                                   }
+                      }
+
+                    ]
+    },
+    {
+      "id":18,
+      "nombre": "Logica y programacion",
+      "orden": 5,
+      "comisiones": [
+                      {
+                        "id":7,
+                        "nombre":"Comision 1",
+                        "horario": {
+                                      "dias":["martes", "viernes"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      }
+                    ]
+    },    {
+      "id":19,
+      "nombre": "Ingenieria de Software",
+      "orden": 5,
+      "comisiones": [
+                      {
+                        "id":1,
+                        "nombre":"Comision 1",
+                        "horario": {
+                                      "dias":["martes, viernes"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      },
+                      {
+                        "id":2,
+                        "nombre":"Comision 2",
+                        "horario": {
+                                      "dias":["jueves", "sabado"],
+                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
+                                   }
+                      }
+
+                    ]
+    },
+    {
+      "id":20,
+      "nombre": "Seguridad de la informacion",
+      "orden": 5,
+      "comisiones": [
+                      {
+                        "id":3,
+                        "nombre":"Comision 1",
+                        "horario": {
+                                      "dias":["lunes", "miercoles"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      },
+                      {
+                        "id":4,
+                        "nombre":"Comision 2",
+                        "horario": {
+                                      "dias":["jueves", "sabado"],
+                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
+                                   }
+                      },
+                      {
+                        "id":5,
+                        "nombre":"Comision 3",
+                        "horario": {
+                                      "dias":["martes", "viernes"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      },
+                      {
+                        "id":6,
+                        "nombre":"Comision 4",
+                        "horario": {
+                                      "dias":["Miercoles", "Domingo"],
+                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
+                                   }
+                      }
+
+                    ]
+    },
+    {
+      "id":21,
+      "nombre": "Matematica III",
+      "orden": 6,
+      "comisiones": [
+                      {
+                        "id":7,
+                        "nombre":"Comision 1",
+                        "horario": {
+                                      "dias":["martes", "viernes"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      }
+                    ]
+    },    {
+      "id":22,
+      "nombre": "Programacion concurrente",
+      "orden": 6,
+      "comisiones": [
+                      {
+                        "id":1,
+                        "nombre":"Comision 1",
+                        "horario": {
+                                      "dias":["martes, viernes"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      },
+                      {
+                        "id":2,
+                        "nombre":"Comision 2",
+                        "horario": {
+                                      "dias":["jueves", "sabado"],
+                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
+                                   }
+                      }
+
+                    ]
+    },
+    {
+      "id":23,
+      "nombre": "Desarrollo de aplicaciones",
+      "orden": 6,
+      "comisiones": [
+                      {
+                        "id":3,
+                        "nombre":"Comision 1",
+                        "horario": {
+                                      "dias":["lunes", "miercoles"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      },
+                      {
+                        "id":4,
+                        "nombre":"Comision 2",
+                        "horario": {
+                                      "dias":["jueves", "sabado"],
+                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
+                                   }
+                      },
+                      {
+                        "id":5,
+                        "nombre":"Comision 3",
+                        "horario": {
+                                      "dias":["martes", "viernes"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      },
+                      {
+                        "id":6,
+                        "nombre":"Comision 4",
+                        "horario": {
+                                      "dias":["Miercoles", "Domingo"],
+                                      "hora":["17:00 a 19:00", "08:00 a 13:00"]
+                                   }
+                      }
+
+                    ],
+		"aprobada": false
+    },
+    {
+      "id":24,
+      "nombre": "Ingenieria de requerimientos",
+      "orden": 6,
+      "comisiones": [
+                      {
+                        "id":7,
+                        "nombre":"Comision 1",
+                        "horario": {
+                                      "dias":["martes", "viernes"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      }
+                    ],
+	"aprobada": false
+    },
+    {
+      "id":25,
+      "nombre": "Probabilidad y estadistica",
+      "orden": 7,
       "comisiones": [
                       {
                         "id":8,
@@ -707,9 +650,25 @@
 	"aprobada": false
     },
     {
-      "id":6,
-      "nombre": "Programacion con Objetos 1",
-      "orden": "2",
+      "id":26,
+      "nombre": "Lenguajes formales y automatas",
+      "orden": 7,
+      "comisiones": [
+                      {
+                        "id":8,
+                        "nombre":"Comision 1",
+                        "horario": {
+                                      "dias":["martes", "viernes"],
+                                      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                                   }
+                      }
+                    ],
+	"aprobada": false
+    },
+    {
+      "id":27,
+      "nombre": "Algoritmos",
+      "orden": 7,
       "comisiones": [
 		      {
 			"id":8,
@@ -723,9 +682,9 @@
 	"aprobada": false
     },
     {
-      "id":7,
-      "nombre": "Programacion con Objetos 3",
-      "orden": "5",
+      "id":28,
+      "nombre": "Gestion de proyectos",
+      "orden": 7,
       "comisiones": [
 		      {
 			"id":8,
@@ -737,6 +696,198 @@
 		      }
 		    ],
 	"aprobada": false
-    }
+    },
+    {
+      "id":29,
+      "nombre": "Complementaria I",
+      "orden": 8,
+      "comisiones": [
+		      {
+			"id":8,
+			"nombre":"Comision 1",
+			"horario": {
+				      "dias":["martes", "viernes"],
+				      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+				   }
+		      }
+		    ],
+	  "aprobada": false
+    },
+    {
+          "id":30,
+          "nombre": "Teoría de la computacion",
+          "orden": 8,
+          "comisiones": [
+    		      {
+    			"id":8,
+    			"nombre":"Comision 1",
+    			"horario": {
+    				      "dias":["martes", "viernes"],
+    				      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+    				   }
+    		      }
+    		    ],
+    	"aprobada": false
+     },
+     {
+          "id":31,
+          "nombre": "Programacion con Objetos III",
+          "orden": 8,
+          "comisiones": [
+    		      {
+    			"id":8,
+    			"nombre":"Comision 1",
+    			"horario": {
+    				      "dias":["martes", "viernes"],
+    				      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+    				   }
+    		      }
+    		    ],
+    	"aprobada": false
+        },
+        {
+              "id":32,
+              "nombre": "Arquitectura de software",
+              "orden": 8,
+              "comisiones": [
+        		      {
+        			"id":8,
+        			"nombre":"Comision 1",
+        			"horario": {
+        				      "dias":["martes", "viernes"],
+        				      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+        				   }
+        		      }
+        		    ],
+        	"aprobada": false
+        },
+        {
+              "id":33,
+              "nombre": "Sistemas distribuidos",
+              "orden": 8,
+              "comisiones": [
+        		      {
+        			"id":8,
+        			"nombre":"Comision 1",
+        			"horario": {
+        				      "dias":["martes", "viernes"],
+        				      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+        				   }
+        		      }
+        		    ],
+        	"aprobada": false
+        },
+        {
+              "id":34,
+              "nombre": "Complementaria 2",
+              "orden": 9,
+              "comisiones": [
+        		      {
+        			"id":8,
+        			"nombre":"Comision 1",
+        			"horario": {
+        				      "dias":["martes", "viernes"],
+        				      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+        				   }
+        		      }
+        		    ],
+        	"aprobada": false
+        },
+        {
+              "id":35,
+              "nombre": "Carácteristicas de leguajes de programacion",
+              "orden": 9,
+              "comisiones": [
+        		      {
+        			"id":8,
+        			"nombre":"Comision 1",
+        			"horario": {
+        				      "dias":["martes", "viernes"],
+        				      "hora":["16:00 a 18:00", "18:00 a 21:00"]
+        				   }
+        		      }
+        		    ],
+        	"aprobada": false
+        },
+        {
+              "id":36,
+              "nombre": "Arquitectura de software II",
+              "orden": 9,
+              "comisiones": [
+                      {
+                    "id":8,
+                    "nombre":"Comision 1",
+                    "horario": {
+                              "dias":["martes", "viernes"],
+                              "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                           }
+                      }
+                    ],
+            "aprobada": false
+        },
+        {
+              "id":37,
+              "nombre": "Arquitectura de computadoras",
+              "orden": 9,
+              "comisiones": [
+                      {
+                    "id":8,
+                    "nombre":"Comision 1",
+                    "horario": {
+                              "dias":["martes", "viernes"],
+                              "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                           }
+                      }
+                    ],
+            "aprobada": false
+        },
+        {
+              "id":38,
+              "nombre": "Parseo y generacion de codigo",
+              "orden": 10,
+              "comisiones": [
+                      {
+                    "id":8,
+                    "nombre":"Comision 1",
+                    "horario": {
+                              "dias":["martes", "viernes"],
+                              "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                           }
+                      }
+                    ],
+            "aprobada": false
+        },
+        {
+              "id":39,
+              "nombre": "Complementaria III",
+              "orden": 10,
+              "comisiones": [
+                      {
+                    "id":8,
+                    "nombre":"Comision 1",
+                    "horario": {
+                              "dias":["martes", "viernes"],
+                              "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                           }
+                      }
+                    ],
+            "aprobada": false
+        },
+        {
+              "id":40,
+              "nombre": "Aspectos Legales",
+              "orden": 10,
+              "comisiones": [
+                      {
+                    "id":8,
+                    "nombre":"Comision 1",
+                    "horario": {
+                              "dias":["martes", "viernes"],
+                              "hora":["16:00 a 18:00", "18:00 a 21:00"]
+                           }
+                      }
+                    ],
+            "aprobada": false
+        }
   ]
 }
