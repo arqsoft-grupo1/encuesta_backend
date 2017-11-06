@@ -4,11 +4,18 @@ namespace AppBundle\Services;
 
 class OfertaService
 {
-    function getOferta() {
-            $file = realpath('/home/martin/workspace/encuesta_backend/var/oferta.json');
-            $restresult = file_get_contents($file);
+    private $path;
 
-            return $restresult;
+    public function __construct($path)
+    {
+        $this->path = $path;
+    }
+
+    function getOferta() {
+        $file = $this->path.'oferta.json';
+        $restresult = file_get_contents($file);
+
+        return $restresult;
     }
 
 }
