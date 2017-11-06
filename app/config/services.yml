@@ -34,3 +34,9 @@ services:
         public: true
         arguments:
             $path: '%kernel.root_dir%/../var/'
+
+    # add more services, or override services that need manual wiring
+    AppBundle\Services\EncuestaService:
+        public: true
+        arguments:
+            $path: '%kernel.root_dir%/../var/'

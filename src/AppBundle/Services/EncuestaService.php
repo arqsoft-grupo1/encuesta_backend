@@ -6,10 +6,17 @@ namespace AppBundle\Services;
 
 class EncuestaService
 {
-    function guardarEncuesta($data) {
+    private $path;
 
+    public function __construct($path)
+    {
+        $this->path = $path;
+    }
+
+    function guardarEncuesta($data) {
+        var_dump($this->path);
         $legajo = $data->getLegajo();
-        $fichero = "/home/lrinaudo/$legajo.json";
+        $fichero = "$this->path $legajo.json";
 
         $encuesta = $data->getEncuesta();
 

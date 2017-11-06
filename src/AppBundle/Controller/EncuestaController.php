@@ -20,7 +20,8 @@ class EncuestaController extends Controller
 	 */
 	 public function postAction(Request $request)
 	 {
-		$service = new EncuestaService();
+		// $service = new EncuestaService();
+		$service = $this->get(EncuestaService::class);
 		$data = new Encuesta();
 
 		$legajo = $request->get('legajo');
