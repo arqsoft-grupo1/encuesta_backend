@@ -19,8 +19,8 @@ class OfertaController extends FosRestController
      */
     public function getAction()
     {
-        $service = new OfertaService();
-        $restresult = json_decode($service -> getOferta());
+        $service = $this->get(OfertaService::class);
+        $restresult = json_decode($service->getOferta());
         $restresult->token = uniqid();
         if ($restresult === null) {
             return new View("No existe una oferta", Response::HTTP_NOT_FOUND);
