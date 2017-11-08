@@ -14,9 +14,9 @@ class EncuestaService
     }
 
     function guardarEncuesta($data) {
-        var_dump($this->path);
+        // var_dump($this->path);
         $legajo = $data->getLegajo();
-        $fichero = "$this->path $legajo.json";
+        $fichero = "$this->path$legajo.json";
 
         $encuesta = $data->getEncuesta();
 
@@ -24,9 +24,12 @@ class EncuestaService
 
     }
 
-    function getEncuestaByLegajo($legajo) {
+    function getEncuestaByToken($token) {
+        $file = "$this->path$token.json";
+        // var_dump($file);
+        $restresult = file_get_contents($file);
 
-
+        return $restresult;
 
     }
 

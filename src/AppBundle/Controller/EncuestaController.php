@@ -42,6 +42,23 @@ class EncuestaController extends Controller
 	 }
 
 	 /**
+	 * @Rest\Get("/api/encuesta/{token}")
+	 */
+	 public function tokenAction($token)
+	 {
+
+		//  var_dump($token);
+
+		 $service = $this->get(EncuestaService::class);
+		 $restresult = json_decode($service->getEncuestaByToken($token));
+		 if ($restresult === null) {
+			 return new View("No existe una encuesta relacionada al token", Response::HTTP_NOT_FOUND);
+		 }
+		 return new JsonResponse($restresult);
+
+	 }
+
+	 /**
 	* @Rest\Put("/api/encuesta/{id}")
 	*/
 	public function updateAction($id,Request $request)
