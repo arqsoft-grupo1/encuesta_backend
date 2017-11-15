@@ -15,9 +15,9 @@ use AppBundle\Services\OfertaService;
 class OfertaController extends FosRestController
 {
      /**
-     * @Rest\Get("/api/oferta")
+     * @Rest\Get("/api/oferta/{mail}")
      */
-    public function getAction()
+    public function getAction($mail)
     {
         $service = $this->get(OfertaService::class);
         $restresult = json_decode($service->getOferta());
@@ -25,10 +25,32 @@ class OfertaController extends FosRestController
         if ($restresult === null) {
             return new View("No existe una oferta", Response::HTTP_NOT_FOUND);
         }
-        // 59ffa6967fed3
-        // return $restresult;
+
+        $this->sendMail($mail, $restresult->token);
         return new JsonResponse($restresult);
     }
+
+    public function sendMail($mail, $token)
+       {
+           $message = \Swift_Message::newInstance()
+                           ->setSubject('Martin ramos')
+                           ->setFrom('admin_encuesta@gmail.com')
+                           ->setTo($mail)
+                           ->setBody("
+                                <span lang='ES-AR'>
+                                    <a href='http://arq-sof-encuesta-backend.herokuapp.com/api/encuesta/$token' target='_blank' rel='noreferrer'>
+                                    <b>
+                                        <span style='font-size: 16.0pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; color: #0070C0'>
+                                            CLICK AQUÍ: ACCESO A LA ENCUESTA
+                                        </span>
+                                    </b>
+                                    </a>
+                                </span>"
+                           , 'text/html');
+        //    var_dump($message);
+           $this->get('mailer')->send($message);
+
+       }
 
     /**
 	 * @Rest\Get("/api/oferta/{id}")
