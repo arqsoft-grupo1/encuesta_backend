@@ -26,7 +26,7 @@ class OfertaController extends FosRestController
             return new View("No existe una oferta", Response::HTTP_NOT_FOUND);
         }
 
-        $this->sendMail($mail, $restresult->token);
+        // $this->sendMail($mail, $restresult->token);
         return new JsonResponse($restresult);
     }
 

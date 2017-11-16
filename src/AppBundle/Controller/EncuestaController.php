@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use FOS\RestBundle\View\View;
 use AppBundle\Services\EncuestaService;
 use AppBundle\Entity\Encuesta;
+use AppBundle\Document\Encuesta as DEncuesta;
 
 class EncuestaController extends Controller
 {
@@ -46,15 +47,20 @@ class EncuestaController extends Controller
 	 */
 	 public function tokenAction($token)
 	 {
-
+		 $e = new DEncuesta();
+		 $e->setLegajo("123");
+		 $dm = $this->get('doctrine_mongodb')->getManager();
+	     $dm->persist($e);
+		 $dm->flush();
+		 return new View($e->getId(), Response::HTTP_OK);
 		//  var_dump($token);
 
-		 $service = $this->get(EncuestaService::class);
-		 $restresult = json_decode($service->getEncuestaByToken($token));
-		 if ($restresult === null) {
-			 return new View("No existe una encuesta relacionada al token", Response::HTTP_NOT_FOUND);
-		 }
-		 return new JsonResponse($restresult);
+		//  $service = $this->get(EncuestaService::class);
+		//  $restresult = json_decode($service->getEncuestaByToken($token));
+		//  if ($restresult === null) {
+		// 	 return new View("No existe una encuesta relacionada al token", Response::HTTP_NOT_FOUND);
+		//  }
+		//  return new JsonResponse($restresult);
 
 	 }
 
