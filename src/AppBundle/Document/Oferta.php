@@ -27,6 +27,20 @@ class Oferta
     protected $carrera;
 
     /**
+     * @var string $anio
+     *
+     * @ODM\Field(name="anio", type="string")
+     */
+    protected $anio;
+
+    /**
+     * @var string $cuatrimestre
+     *
+     * @ODM\Field(name="cuatrimestre", type="string")
+     */
+    protected $cuatrimestre;
+    
+    /**
      * @var string $materias
      *
      * @ODM\Field(name="materias", type="string")

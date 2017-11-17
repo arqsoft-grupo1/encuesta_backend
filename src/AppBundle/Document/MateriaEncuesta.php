@@ -20,7 +20,7 @@ class MateriaEncuesta
     protected $id;
 
     /**
-     * @var string $materia
+     * @var MateriaEncuesta $materia
      *@ODM\ReferenceOne(targetDocument="Materia")
      */
     protected $materia;
