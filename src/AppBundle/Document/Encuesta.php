@@ -2,24 +2,53 @@
 
 namespace AppBundle\Document;
 
-use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
- * @MongoDB\Document
+ * @ODM\Document
  */
 class Encuesta
 {
     /**
-     * @MongoDB\Id
+     * @ODM\Id
      */
     protected $id;
 
     /**
-     * @MongoDB\Field(type="string")
+     * @ODM\Field(type="string")
      */
     protected $legajo;
 
-    protected $encuesta;
+    protected $token;
+
+    /**
+     * @var [MateriaEncuesta] $materias
+      * @ODM\ReferenceMany(targetDocument="MateriaEncuesta")
+      */
+    protected $materias;
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     * @return $this
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string $token
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
 
     /**
      * Get id
