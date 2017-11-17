@@ -26,7 +26,18 @@ class Materia
      */
     protected $nombre;
 
+    /**
+     * @var int $orden
+     *
+     * @ODM\Field(name="nombre", type="int")
+     */
+    protected $orden;
 
+    /**
+     * @var [Comision] $comisiones
+      * @ODM\ReferenceMany(targetDocument="Comision")
+      */
+    protected $comisiones;
     /**
      * Get id
      *
@@ -57,5 +68,61 @@ class Materia
     public function getNombre()
     {
         return $this->nombre;
+    }
+    public function __construct()
+    {
+        $this->comisiones = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Set orden
+     *
+     * @param int $orden
+     * @return $this
+     */
+    public function setOrden($orden)
+    {
+        $this->orden = $orden;
+        return $this;
+    }
+
+    /**
+     * Get orden
+     *
+     * @return int $orden
+     */
+    public function getOrden()
+    {
+        return $this->orden;
+    }
+
+    /**
+     * Add comisione
+     *
+     * @param AppBundle\Document\Comision $comisione
+     */
+    public function addComisione(\AppBundle\Document\Comision $comisione)
+    {
+        $this->comisiones[] = $comisione;
+    }
+
+    /**
+     * Remove comisione
+     *
+     * @param AppBundle\Document\Comision $comisione
+     */
+    public function removeComisione(\AppBundle\Document\Comision $comisione)
+    {
+        $this->comisiones->removeElement($comisione);
+    }
+
+    /**
+     * Get comisiones
+     *
+     * @return \Doctrine\Common\Collections\Collection $comisiones
+     */
+    public function getComisiones()
+    {
+        return $this->comisiones;
     }
 }

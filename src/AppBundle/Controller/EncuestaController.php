@@ -11,35 +11,37 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use FOS\RestBundle\View\View;
 use AppBundle\Services\EncuestaService;
-use AppBundle\Entity\Encuesta;
-use AppBundle\Document\Encuesta as DEncuesta;
+use AppBundle\Document\Encuesta as Encuesta;
 
 class EncuestaController extends Controller
 {
 	 /**
-	 * @Rest\Post("/api/encuesta")
+	 * @Rest\Post("/api/encuesta/{token}")
 	 */
-	 public function postAction(Request $request)
+	 public function postAction(Request $request, $token)
 	 {
 		// $service = new EncuestaService();
 		$service = $this->get(EncuestaService::class);
-		$data = new Encuesta();
+		$encuesta = new Encuesta();
 
-		$legajo = $request->get('legajo');
-		$encuesta = $request->get('encuesta');
+		$encuesta->setToken($token);
+		$encuesta->setMateriasAprobadas($request->get('materias_aprobadas'));
+		$encuesta->setMateriasACursar($request->get('materias_a_cursar'));
+		$encuesta->setMateriasTodaviaNo($request->get('materias_todaviano'));
+		$encuesta->setMateriasNoPuedoPorHorario($request->get('materias_no_puedoporhorario'));
 
-		if(empty($legajo) || empty($encuesta))
-		{
-			return new View("Los datos son requeridos", Response::HTTP_NOT_ACCEPTABLE);
-		}
+		// if(empty($legajo) || empty($encuesta))
+		// {
+		// 	return new View("Los datos son requeridos", Response::HTTP_NOT_ACCEPTABLE);
+		// }
 
-		$data->setLegajo($legajo);
-		$data->setEncuesta($encuesta);
+		// $data->setLegajo($legajo);
+		// $data->setEncuesta($encuesta);
 
-		$service->guardarEncuesta($data);
+		// $service->guardarEncuesta($data);
+		return new View($encuesta->getMateriasAprobadas(), Response::HTTP_OK);
+		// return new View("Se creo correctamente la encuesta", Response::HTTP_OK);
 
-
-		return new View("Se creo correctamente la encuesta", Response::HTTP_OK);
 	 }
 
 	 /**

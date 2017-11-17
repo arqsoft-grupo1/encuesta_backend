@@ -62,4 +62,26 @@ class MateriaEncuesta
     {
         return $this->materia;
     }
+
+    /**
+     * Set comisionElegida
+     *
+     * @param AppBundle\Document\Comision $comisionElegida
+     * @return $this
+     */
+    public function setComisionElegida(\AppBundle\Document\Comision $comisionElegida)
+    {
+        $this->comisionElegida = $comisionElegida;
+        return $this;
+    }
+
+    /**
+     * Get comisionElegida
+     *
+     * @return AppBundle\Document\Comision $comisionElegida
+     */
+    public function getComisionElegida()
+    {
+        return $this->comisionElegida;
+    }
 }

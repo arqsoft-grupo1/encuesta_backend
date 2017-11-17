@@ -101,4 +101,48 @@ class Oferta
     {
         return $this->materias;
     }
+
+    /**
+     * Set anio
+     *
+     * @param string $anio
+     * @return $this
+     */
+    public function setAnio($anio)
+    {
+        $this->anio = $anio;
+        return $this;
+    }
+
+    /**
+     * Get anio
+     *
+     * @return string $anio
+     */
+    public function getAnio()
+    {
+        return $this->anio;
+    }
+
+    /**
+     * Set cuatrimestre
+     *
+     * @param string $cuatrimestre
+     * @return $this
+     */
+    public function setCuatrimestre($cuatrimestre)
+    {
+        $this->cuatrimestre = $cuatrimestre;
+        return $this;
+    }
+
+    /**
+     * Get cuatrimestre
+     *
+     * @return string $cuatrimestre
+     */
+    public function getCuatrimestre()
+    {
+        return $this->cuatrimestre;
+    }
 }

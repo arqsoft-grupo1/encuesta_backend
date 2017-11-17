@@ -20,6 +20,8 @@ class EncuestaService
 
         $encuesta = $data->getEncuesta();
 
+        var_dump($data);
+
         file_put_contents($fichero, $encuesta, FILE_APPEND | LOCK_EX);
 
     }

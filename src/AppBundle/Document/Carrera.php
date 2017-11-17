@@ -86,4 +86,28 @@ class Carrera
     {
         return $this->oferta;
     }
+    public function __construct()
+    {
+        $this->oferta = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add ofertum
+     *
+     * @param AppBundle\Document\Oferta $ofertum
+     */
+    public function addOfertum(\AppBundle\Document\Oferta $ofertum)
+    {
+        $this->oferta[] = $ofertum;
+    }
+
+    /**
+     * Remove ofertum
+     *
+     * @param AppBundle\Document\Oferta $ofertum
+     */
+    public function removeOfertum(\AppBundle\Document\Oferta $ofertum)
+    {
+        $this->oferta->removeElement($ofertum);
+    }
 }
