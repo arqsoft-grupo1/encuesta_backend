@@ -29,7 +29,7 @@ class Materia
     /**
      * @var int $orden
      *
-     * @ODM\Field(name="nombre", type="int")
+     * @ODM\Field(name="orden", type="int")
      */
     protected $orden;
 
@@ -73,7 +73,7 @@ class Materia
     {
         $this->comisiones = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Set orden
      *
@@ -124,5 +124,10 @@ class Materia
     public function getComisiones()
     {
         return $this->comisiones;
+    }
+
+    public function setComisiones($comisiones)
+    {
+        return $this->comisiones = $comisiones;
     }
 }

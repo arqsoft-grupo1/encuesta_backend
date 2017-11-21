@@ -20,15 +20,15 @@ class MateriaEncuesta
     protected $id;
 
     /**
-     * @var MateriaEncuesta $materia
-     *@ODM\ReferenceOne(targetDocument="Materia")
+     * @var Materia $materia
+     *@ODM\ReferenceOne(targetDocument="Materia", cascade="persist")
      */
     protected $materia;
 
     /**
      * @var Comision $comisionElegida
      *@ODM\ReferenceOne(targetDocument="Comision")
-     */
+    */
     protected $comisionElegida;
 
     /**

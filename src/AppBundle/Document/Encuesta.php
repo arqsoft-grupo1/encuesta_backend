@@ -19,31 +19,34 @@ class Encuesta
      */
     protected $legajo;
 
-    protected $token;
-
     /**
-     * @var [MateriaEncuesta] $materias_aprobadas
-      * @ODM\ReferenceMany(targetDocument="MateriaEncuesta")
-      */
-    protected $materias_aprobadas;
+     * @ODM\Field(type="string")
+     */
+     protected $token;
+
+    // /**
+    //  * @var [MateriaEncuesta] $materias_aprobadas
+    //   * @ODM\ReferenceMany(targetDocument="MateriaEncuesta")
+    //   */
+    // protected $materias_aprobadas;
 
     /**
      * @var [MateriaEncuesta] $materias_a_cursar
-      * @ODM\ReferenceMany(targetDocument="MateriaEncuesta")
+      * @ODM\ReferenceMany(targetDocument="MateriaEncuesta", cascade="persist")
       */
     protected $materias_a_cursar;
 
-    /**
-     * @var [MateriaEncuesta] $materias_todaviano
-      * @ODM\ReferenceMany(targetDocument="MateriaEncuesta")
-      */
-    protected $materias_todaviano;
-
-    /**
-     * @var [MateriaEncuesta] $materias_nopuedohorario
-      * @ODM\ReferenceMany(targetDocument="MateriaEncuesta")
-      */
-    protected $materias_nopuedohorario;
+    // /**
+    //  * @var [MateriaEncuesta] $materias_todaviano
+    //   * @ODM\ReferenceMany(targetDocument="MateriaEncuesta")
+    //   */
+    // protected $materias_todaviano;
+    //
+    // /**
+    //  * @var [MateriaEncuesta] $materias_nopuedohorario
+    //   * @ODM\ReferenceMany(targetDocument="MateriaEncuesta")
+    //   */
+    // protected $materias_nopuedohorario;
 
     /**
      * Set token
@@ -101,28 +104,28 @@ class Encuesta
     }
     public function __construct()
     {
-        $this->materias_aprobadas = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->materias_a_cursar = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->materias_todaviano = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->materias_nopuedohorario = new \Doctrine\Common\Collections\ArrayCollection();
+        // $this->materias_aprobadas = new \Doctrine\Common\Collections\ArrayCollection();
+        // $this->materias_a_cursar = new \Doctrine\Common\Collections\ArrayCollection();
+        // $this->materias_todaviano = new \Doctrine\Common\Collections\ArrayCollection();
+        // $this->materias_nopuedohorario = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    //
+    // public function setMateriasAprobadas($materias_aprobadas) {
+    //     $this->materias_aprobadas = $materias_aprobadas;
+    // }
 
-    public function setMateriasAprobadas($materias_aprobadas) {
-        $this->materias_aprobadas = $materias_aprobadas;
-    }
+    // public function setMateriasACursar($materias_a_cursar) {
+    //     $this->materias_a_cursar = $materias_a_cursar;
+    // }
 
-    public function setMateriasACursar($materias_a_cursar) {
-        $this->materias_a_cursar = $materias_a_cursar;
-    }
-
-    public function setMateriasTodaviaNo($materias_todaviano) {
-        $this->materias_todaviano = $materias_todaviano;
-    }
-    
-    public function setMateriasNoPuedoPorHorario($materias_nopuedohorario) {
-        $this->materias_nopuedohorario = $materias_nopuedohorario;
-    }
+    // public function setMateriasTodaviaNo($materias_todaviano) {
+    //     $this->materias_todaviano = $materias_todaviano;
+    // }
+    //
+    // public function setMateriasNoPuedoPorHorario($materias_nopuedohorario) {
+    //     $this->materias_nopuedohorario = $materias_nopuedohorario;
+    // }
     /**
      * Add materiasAprobada
      *

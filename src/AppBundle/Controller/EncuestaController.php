@@ -12,9 +12,28 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use FOS\RestBundle\View\View;
 use AppBundle\Services\EncuestaService;
 use AppBundle\Document\Encuesta as Encuesta;
+use AppBundle\Document\Materia as Materia;
+use AppBundle\Document\Comision as Comision;
+use AppBundle\Document\MateriaEncuesta as MateriaEncuesta;
 
 class EncuestaController extends Controller
 {
+	private function generarEncuesta($encuesta, $materias) {
+		foreach ($materias as $tmpMateria) {
+			$dm = $this->get('doctrine_mongodb')->getManager();
+			$materia = $dm->getRepository('AppBundle:Materia')->findOneBy(array('nombre' => $tmpMateria['nombre']));
+			$matEncuesta = new MateriaEncuesta();
+			$matEncuesta->setMateria($materia);
+			// $tmp = $tmpMateria['comisionElegida']['codigo'];
+			$comisionElegida = $dm->getRepository('AppBundle:Comision')->findOneBy(array('codigo'=> $tmpMateria['comisionElegida']));
+			$matEncuesta->setComisionElegida($comisionElegida);
+			// $encuesta->addMateriasACursar($matEncuesta);
+			// $encuesta->addMateriasAprobada($matEncuesta);
+
+		}
+
+		return $encuesta;
+	}
 	 /**
 	 * @Rest\Post("/api/encuesta/{token}")
 	 */
@@ -25,22 +44,54 @@ class EncuestaController extends Controller
 		$encuesta = new Encuesta();
 
 		$encuesta->setToken($token);
-		$encuesta->setMateriasAprobadas($request->get('materias_aprobadas'));
-		$encuesta->setMateriasACursar($request->get('materias_a_cursar'));
-		$encuesta->setMateriasTodaviaNo($request->get('materias_todaviano'));
-		$encuesta->setMateriasNoPuedoPorHorario($request->get('materias_no_puedoporhorario'));
 
-		// if(empty($legajo) || empty($encuesta))
-		// {
-		// 	return new View("Los datos son requeridos", Response::HTTP_NOT_ACCEPTABLE);
+
+
+		// $encuesta->setMateriasACursar($request->get('materias_a_cursar'));
+		$materias_a_cursar = $request->get('materias_a_cursar');
+		$materias_todaviano = $request->get('materias_todaviano');
+		// $materias_aprobadas = $request->get('materias_aprobadas');
+
+
+		// $tmp2 = $tmpMaterias[0];
+
+		// $this->generarEncuesta($encuesta, $materias_a_cursar);
+		$this->generarEncuesta($encuesta, $materias_todaviano);
+		// $this->generarEncuesta($encuesta, $materias_aprobadas);
+		// foreach ($tmpMaterias as $tmpMateria) {
+		// 	$dm = $this->get('doctrine_mongodb')->getManager();
+		// 	$materia = $dm->getRepository('AppBundle:Materia')->findOneBy(array('nombre' => $tmpMateria['nombre']));
+		// 	$matEncuesta = new MateriaEncuesta();
+		// 	$matEncuesta->setMateria($materia);
+		// 	// $tmp = $tmpMateria['comisionElegida']['codigo'];
+		// 	$comisionElegida = $dm->getRepository('AppBundle:Comision')->findOneBy(array('codigo'=> 2));
+		// 	$matEncuesta->setComisionElegida($comisionElegida);
+		// 	$encuesta->addMateriasACursar($matEncuesta);
+		//
 		// }
 
-		// $data->setLegajo($legajo);
-		// $data->setEncuesta($encuesta);
+		$dm = $this->get('doctrine_mongodb')->getManager();
+		$dm->persist($encuesta);
+		$dm->flush();
 
-		// $service->guardarEncuesta($data);
-		return new View($encuesta->getMateriasAprobadas(), Response::HTTP_OK);
+		return new View($encuesta, Response::HTTP_OK);
 		// return new View("Se creo correctamente la encuesta", Response::HTTP_OK);
+
+	 }
+
+	 function generarComisiones($comisiones) {
+		 $tmpComisiones = array();
+		 foreach($comisiones as $comision) {
+			 $tmpComision = new Comision();
+			 $tmpComision->setNombre($comision['nombre']);
+			 $tmpComision->setDias($comision['horario']['dias']);
+			 $tmpComision->setHora($comision['horario']['hora']);
+
+
+			 $tmpComisiones[] = $tmpComision;
+		 }
+
+		 return $tmpComisiones;
 
 	 }
 
