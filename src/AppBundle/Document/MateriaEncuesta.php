@@ -21,15 +21,18 @@ class MateriaEncuesta
 
     /**
      * @var Materia $materia
-     *@ODM\ReferenceOne(targetDocument="Materia", cascade="persist")
+     *
+     * @ODM\ReferenceOne(targetDocument="Materia")
      */
     protected $materia;
 
     /**
-     * @var Comision $comisionElegida
-     *@ODM\ReferenceOne(targetDocument="Comision")
-    */
+     * @var string $comisionElegida
+     *
+     * @ODM\ReferenceOne(targetDocument="Comision")
+     */
     protected $comisionElegida;
+
 
     /**
      * Get id
@@ -44,7 +47,7 @@ class MateriaEncuesta
     /**
      * Set materia
      *
-     * @param Materia $materia
+     * @param string $materia
      * @return $this
      */
     public function setMateria($materia)
@@ -56,7 +59,7 @@ class MateriaEncuesta
     /**
      * Get materia
      *
-     * @return Materia $materia
+     * @return string $materia
      */
     public function getMateria()
     {
@@ -66,10 +69,10 @@ class MateriaEncuesta
     /**
      * Set comisionElegida
      *
-     * @param AppBundle\Document\Comision $comisionElegida
+     * @param string $comisionElegida
      * @return $this
      */
-    public function setComisionElegida(\AppBundle\Document\Comision $comisionElegida)
+    public function setComisionElegida($comisionElegida)
     {
         $this->comisionElegida = $comisionElegida;
         return $this;
@@ -78,7 +81,7 @@ class MateriaEncuesta
     /**
      * Get comisionElegida
      *
-     * @return AppBundle\Document\Comision $comisionElegida
+     * @return string $comisionElegida
      */
     public function getComisionElegida()
     {

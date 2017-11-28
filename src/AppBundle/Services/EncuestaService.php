@@ -13,14 +13,14 @@ class EncuestaService
         $this->path = $path;
     }
 
-    function guardarEncuesta($data) {
+    function guardarEncuesta($encuesta) {
         // var_dump($this->path);
-        $legajo = $data->getLegajo();
+        $legajo = $encuesta->getToken();
         $fichero = "$this->path$legajo.json";
 
-        $encuesta = $data->getEncuesta();
+        // $encuesta = $data->getEncuesta();
 
-        var_dump($data);
+        // var_dump($data);
 
         file_put_contents($fichero, $encuesta, FILE_APPEND | LOCK_EX);
 

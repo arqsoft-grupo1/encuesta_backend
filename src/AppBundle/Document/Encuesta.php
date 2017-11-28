@@ -5,70 +5,62 @@ namespace AppBundle\Document;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
+ * AppBundle\Document\Encuesta
+ *
  * @ODM\Document
+ * @ODM\ChangeTrackingPolicy("DEFERRED_IMPLICIT")
  */
 class Encuesta
 {
     /**
-     * @ODM\Id
+     * @var MongoId $id
+     *
+     * @ODM\Id(strategy="AUTO")
      */
     protected $id;
 
     /**
-     * @ODM\Field(type="string")
+     * @var string $legajo
+     *
+     * @ODM\Field(name="legajo", type="string")
      */
     protected $legajo;
 
     /**
-     * @ODM\Field(type="string")
+     * @var string $token
+     *
+     * @ODM\Field(name="token", type="string")
      */
-     protected $token;
-
-    // /**
-    //  * @var [MateriaEncuesta] $materias_aprobadas
-    //   * @ODM\ReferenceMany(targetDocument="MateriaEncuesta")
-    //   */
-    // protected $materias_aprobadas;
+    protected $token;
 
     /**
-     * @var [MateriaEncuesta] $materias_a_cursar
-      * @ODM\ReferenceMany(targetDocument="MateriaEncuesta", cascade="persist")
-      */
+     * @var collection $materias_aprobadas
+     *
+     * @ODM\ReferenceMany(targetDocument="MateriaEncuesta", cascade="all")
+     */
+    protected $materias_aprobadas;
+
+    /**
+     * @var collection $materias__a_cursar
+     *
+     * @ODM\ReferenceMany(targetDocument="MateriaEncuesta", cascade="all")
+     */
     protected $materias_a_cursar;
 
-    // /**
-    //  * @var [MateriaEncuesta] $materias_todaviano
-    //   * @ODM\ReferenceMany(targetDocument="MateriaEncuesta")
-    //   */
-    // protected $materias_todaviano;
-    //
-    // /**
-    //  * @var [MateriaEncuesta] $materias_nopuedohorario
-    //   * @ODM\ReferenceMany(targetDocument="MateriaEncuesta")
-    //   */
-    // protected $materias_nopuedohorario;
+    /**
+     * @var collection $materias_todaviano
+     *
+     * @ODM\ReferenceMany(targetDocument="MateriaEncuesta", cascade="all")
+     */
+    protected $materias_todaviano;
 
     /**
-     * Set token
+     * @var collection $materias_no_puedoporhorario
      *
-     * @param string $token
-     * @return $this
+     * @ODM\ReferenceMany(targetDocument="MateriaEncuesta", cascade="all")
      */
-    public function setToken($token)
-    {
-        $this->token = $token;
-        return $this;
-    }
+    protected $materias_no_puedoporhorario;
 
-    /**
-     * Get token
-     *
-     * @return string $token
-     */
-    public function getToken()
-    {
-        return $this->token;
-    }
 
 
     /**
@@ -102,54 +94,45 @@ class Encuesta
     {
         return $this->legajo;
     }
-    public function __construct()
-    {
-        // $this->materias_aprobadas = new \Doctrine\Common\Collections\ArrayCollection();
-        // $this->materias_a_cursar = new \Doctrine\Common\Collections\ArrayCollection();
-        // $this->materias_todaviano = new \Doctrine\Common\Collections\ArrayCollection();
-        // $this->materias_nopuedohorario = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
-    //
-    // public function setMateriasAprobadas($materias_aprobadas) {
-    //     $this->materias_aprobadas = $materias_aprobadas;
-    // }
-
-    // public function setMateriasACursar($materias_a_cursar) {
-    //     $this->materias_a_cursar = $materias_a_cursar;
-    // }
-
-    // public function setMateriasTodaviaNo($materias_todaviano) {
-    //     $this->materias_todaviano = $materias_todaviano;
-    // }
-    //
-    // public function setMateriasNoPuedoPorHorario($materias_nopuedohorario) {
-    //     $this->materias_nopuedohorario = $materias_nopuedohorario;
-    // }
     /**
-     * Add materiasAprobada
+     * Set token
      *
-     * @param AppBundle\Document\MateriaEncuesta $materiasAprobada
+     * @param string $token
+     * @return $this
      */
-    public function addMateriasAprobada(\AppBundle\Document\MateriaEncuesta $materiasAprobada)
+    public function setToken($token)
     {
-        $this->materias_aprobadas[] = $materiasAprobada;
+        $this->token = $token;
+        return $this;
     }
 
     /**
-     * Remove materiasAprobada
+     * Get token
      *
-     * @param AppBundle\Document\MateriaEncuesta $materiasAprobada
+     * @return string $token
      */
-    public function removeMateriasAprobada(\AppBundle\Document\MateriaEncuesta $materiasAprobada)
+    public function getToken()
     {
-        $this->materias_aprobadas->removeElement($materiasAprobada);
+        return $this->token;
+    }
+
+    /**
+     * Set materiasAprobadas
+     *
+     * @param collection $materiasAprobadas
+     * @return $this
+     */
+    public function setMateriasAprobadas($materiasAprobadas)
+    {
+        $this->materias_aprobadas = $materiasAprobadas;
+        return $this;
     }
 
     /**
      * Get materiasAprobadas
      *
-     * @return \Doctrine\Common\Collections\Collection $materiasAprobadas
+     * @return collection $materiasAprobadas
      */
     public function getMateriasAprobadas()
     {
@@ -157,29 +140,21 @@ class Encuesta
     }
 
     /**
-     * Add materiasACursar
+     * Set materiasACursar
      *
-     * @param AppBundle\Document\MateriaEncuesta $materiasACursar
+     * @param collection $materiasACursar
+     * @return $this
      */
-    public function addMateriasACursar(\AppBundle\Document\MateriaEncuesta $materiasACursar)
+    public function setMateriasACursar($materiasACursar)
     {
-        $this->materias_a_cursar[] = $materiasACursar;
-    }
-
-    /**
-     * Remove materiasACursar
-     *
-     * @param AppBundle\Document\MateriaEncuesta $materiasACursar
-     */
-    public function removeMateriasACursar(\AppBundle\Document\MateriaEncuesta $materiasACursar)
-    {
-        $this->materias_a_cursar->removeElement($materiasACursar);
+        $this->materias_a_cursar = $materiasACursar;
+        return $this;
     }
 
     /**
      * Get materiasACursar
      *
-     * @return \Doctrine\Common\Collections\Collection $materiasACursar
+     * @return collection $materiasACursar
      */
     public function getMateriasACursar()
     {
@@ -187,29 +162,21 @@ class Encuesta
     }
 
     /**
-     * Add materiasTodaviano
+     * Set materiasTodaviano
      *
-     * @param AppBundle\Document\MateriaEncuesta $materiasTodaviano
+     * @param collection $materiasTodaviano
+     * @return $this
      */
-    public function addMateriasTodaviano(\AppBundle\Document\MateriaEncuesta $materiasTodaviano)
+    public function setMateriasTodaviano($materiasTodaviano)
     {
-        $this->materias_todaviano[] = $materiasTodaviano;
-    }
-
-    /**
-     * Remove materiasTodaviano
-     *
-     * @param AppBundle\Document\MateriaEncuesta $materiasTodaviano
-     */
-    public function removeMateriasTodaviano(\AppBundle\Document\MateriaEncuesta $materiasTodaviano)
-    {
-        $this->materias_todaviano->removeElement($materiasTodaviano);
+        $this->materias_todaviano = $materiasTodaviano;
+        return $this;
     }
 
     /**
      * Get materiasTodaviano
      *
-     * @return \Doctrine\Common\Collections\Collection $materiasTodaviano
+     * @return collection $materiasTodaviano
      */
     public function getMateriasTodaviano()
     {
@@ -217,32 +184,24 @@ class Encuesta
     }
 
     /**
-     * Add materiasNopuedohorario
+     * Set materiasNoPuedoporhorario
      *
-     * @param AppBundle\Document\MateriaEncuesta $materiasNopuedohorario
+     * @param collection $materiasNoPuedoporhorario
+     * @return $this
      */
-    public function addMateriasNopuedohorario(\AppBundle\Document\MateriaEncuesta $materiasNopuedohorario)
+    public function setMateriasNoPuedoporhorario($materiasNoPuedoporhorario)
     {
-        $this->materias_nopuedohorario[] = $materiasNopuedohorario;
+        $this->materias_no_puedoporhorario = $materiasNoPuedoporhorario;
+        return $this;
     }
 
     /**
-     * Remove materiasNopuedohorario
+     * Get materiasNoPuedoporhorario
      *
-     * @param AppBundle\Document\MateriaEncuesta $materiasNopuedohorario
+     * @return collection $materiasNoPuedoporhorario
      */
-    public function removeMateriasNopuedohorario(\AppBundle\Document\MateriaEncuesta $materiasNopuedohorario)
+    public function getMateriasNoPuedoporhorario()
     {
-        $this->materias_nopuedohorario->removeElement($materiasNopuedohorario);
-    }
-
-    /**
-     * Get materiasNopuedohorario
-     *
-     * @return \Doctrine\Common\Collections\Collection $materiasNopuedohorario
-     */
-    public function getMateriasNopuedohorario()
-    {
-        return $this->materias_nopuedohorario;
+        return $this->materias_no_puedoporhorario;
     }
 }

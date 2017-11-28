@@ -34,10 +34,13 @@ class Materia
     protected $orden;
 
     /**
-     * @var [Comision] $comisiones
-      * @ODM\ReferenceMany(targetDocument="Comision")
-      */
+     * @var collection $comisiones
+     *
+     * @ODM\Field(name="comisiones", type="collection")
+     */
     protected $comisiones;
+
+
     /**
      * Get id
      *
@@ -69,10 +72,6 @@ class Materia
     {
         return $this->nombre;
     }
-    public function __construct()
-    {
-        $this->comisiones = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Set orden
@@ -97,37 +96,24 @@ class Materia
     }
 
     /**
-     * Add comisione
+     * Set comisiones
      *
-     * @param AppBundle\Document\Comision $comisione
+     * @param collection $comisiones
+     * @return $this
      */
-    public function addComisione(\AppBundle\Document\Comision $comisione)
+    public function setComisiones($comisiones)
     {
-        $this->comisiones[] = $comisione;
-    }
-
-    /**
-     * Remove comisione
-     *
-     * @param AppBundle\Document\Comision $comisione
-     */
-    public function removeComisione(\AppBundle\Document\Comision $comisione)
-    {
-        $this->comisiones->removeElement($comisione);
+        $this->comisiones = $comisiones;
+        return $this;
     }
 
     /**
      * Get comisiones
      *
-     * @return \Doctrine\Common\Collections\Collection $comisiones
+     * @return collection $comisiones
      */
     public function getComisiones()
     {
         return $this->comisiones;
-    }
-
-    public function setComisiones($comisiones)
-    {
-        return $this->comisiones = $comisiones;
     }
 }

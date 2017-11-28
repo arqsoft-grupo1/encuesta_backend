@@ -20,25 +20,11 @@ class Comision
     protected $id;
 
     /**
-     * @var [string] $dias
+     * @var hash $dia_horario
      *
-     * @ODM\Field(name="dias", type="string")
-    */
-    protected $dias;
-
-    /**
-     * @var [string] $hora
-     *
-     * @ODM\Field(name="hora", type="string")
-    */
-    protected $hora;
-
-    /**
-     * @var [string] $nombre
-     *
-     * @ODM\Field(name="nombre", type="string")
-    */
-    protected $nombre;
+     * @ODM\Field(name="dia_horario", type="hash")
+     */
+    protected $dia_horario;
 
 
     /**
@@ -51,33 +37,25 @@ class Comision
         return $this->id;
     }
 
-    public function setNombre($nombre) {
-        $this->nombre = $nombre;
-    }
-
-    public function getNombre() {
-        return $this->nombre;
-    }
-
-    public function setDias($dias) {
-        $this->dias = $dias;
-    }
-
-    public function getDias() {
-        return $this->dias;
-    }
-
-    public function setHora($hora) {
-        $this->hora = $hora;
-    }
-
-    public function getHora() {
-        return $this->getHora();
-    }
-
-    public static function createFromJson( $jsonString )
+    /**
+     * Set diaHorario
+     *
+     * @param hash $diaHorario
+     * @return $this
+     */
+    public function setDiaHorario($diaHorario)
     {
-        $object = json_decode( $jsonString, true);
-        return new self( $object->nombre, $object->horario->dias, $object->horario->hora );
+        $this->dia_horario = $diaHorario;
+        return $this;
+    }
+
+    /**
+     * Get diaHorario
+     *
+     * @return hash $diaHorario
+     */
+    public function getDiaHorario()
+    {
+        return $this->dia_horario;
     }
 }
