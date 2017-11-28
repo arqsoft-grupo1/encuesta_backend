@@ -204,4 +204,91 @@ class Encuesta
     {
         return $this->materias_no_puedoporhorario;
     }
+    public function __construct()
+    {
+        $this->materias_aprobadas = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->materias_a_cursar = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->materias_todaviano = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->materias_no_puedoporhorario = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add materiasAprobada
+     *
+     * @param AppBundle\Document\MateriaEncuesta $materiasAprobada
+     */
+    public function addMateriasAprobada(\AppBundle\Document\MateriaEncuesta $materiasAprobada)
+    {
+        $this->materias_aprobadas[] = $materiasAprobada;
+    }
+
+    /**
+     * Remove materiasAprobada
+     *
+     * @param AppBundle\Document\MateriaEncuesta $materiasAprobada
+     */
+    public function removeMateriasAprobada(\AppBundle\Document\MateriaEncuesta $materiasAprobada)
+    {
+        $this->materias_aprobadas->removeElement($materiasAprobada);
+    }
+
+    /**
+     * Add materiasACursar
+     *
+     * @param AppBundle\Document\MateriaEncuesta $materiasACursar
+     */
+    public function addMateriasACursar(\AppBundle\Document\MateriaEncuesta $materiasACursar)
+    {
+        $this->materias_a_cursar[] = $materiasACursar;
+    }
+
+    /**
+     * Remove materiasACursar
+     *
+     * @param AppBundle\Document\MateriaEncuesta $materiasACursar
+     */
+    public function removeMateriasACursar(\AppBundle\Document\MateriaEncuesta $materiasACursar)
+    {
+        $this->materias_a_cursar->removeElement($materiasACursar);
+    }
+
+    /**
+     * Add materiasTodaviano
+     *
+     * @param AppBundle\Document\MateriaEncuesta $materiasTodaviano
+     */
+    public function addMateriasTodaviano(\AppBundle\Document\MateriaEncuesta $materiasTodaviano)
+    {
+        $this->materias_todaviano[] = $materiasTodaviano;
+    }
+
+    /**
+     * Remove materiasTodaviano
+     *
+     * @param AppBundle\Document\MateriaEncuesta $materiasTodaviano
+     */
+    public function removeMateriasTodaviano(\AppBundle\Document\MateriaEncuesta $materiasTodaviano)
+    {
+        $this->materias_todaviano->removeElement($materiasTodaviano);
+    }
+
+    /**
+     * Add materiasNoPuedoporhorario
+     *
+     * @param AppBundle\Document\MateriaEncuesta $materiasNoPuedoporhorario
+     */
+    public function addMateriasNoPuedoporhorario(\AppBundle\Document\MateriaEncuesta $materiasNoPuedoporhorario)
+    {
+        $this->materias_no_puedoporhorario[] = $materiasNoPuedoporhorario;
+    }
+
+    /**
+     * Remove materiasNoPuedoporhorario
+     *
+     * @param AppBundle\Document\MateriaEncuesta $materiasNoPuedoporhorario
+     */
+    public function removeMateriasNoPuedoporhorario(\AppBundle\Document\MateriaEncuesta $materiasNoPuedoporhorario)
+    {
+        $this->materias_no_puedoporhorario->removeElement($materiasNoPuedoporhorario);
+    }
 }

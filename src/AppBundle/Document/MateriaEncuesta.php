@@ -33,6 +33,12 @@ class MateriaEncuesta
      */
     protected $comisionElegida;
 
+    /**
+     * @var string $estado
+     *
+     * @ODM\Field(name="estado")
+     */
+    protected $estado;
 
     /**
      * Get id
@@ -86,5 +92,27 @@ class MateriaEncuesta
     public function getComisionElegida()
     {
         return $this->comisionElegida;
+    }
+
+    /**
+     * Set estado
+     *
+     * @param string $estado
+     * @return $this
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return string $estado
+     */
+    public function getEstado()
+    {
+        return $this->estado;
     }
 }

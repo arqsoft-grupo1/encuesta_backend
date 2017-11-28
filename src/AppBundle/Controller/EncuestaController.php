@@ -25,7 +25,7 @@ class EncuestaController extends Controller
 			$materia = $dm->getRepository('AppBundle:Materia')->findOneBy(array('nombre' => $tmpMateria['nombre']));
 			$matEncuesta = new MateriaEncuesta();
 			$matEncuesta->setMateria($materia);
-
+			$matEncuesta->setEstado($tmpMateria['estado']);
 			if(array_key_exists('comisionElegida', $tmpMateria)) {
 				$tmpComisionElegida = $dm->getRepository('AppBundle:Comision')->findOneBy(array('comision_id' => $tmpMateria['comisionElegida']));
 				$matEncuesta->setComisionElegida($tmpComisionElegida);
@@ -89,21 +89,14 @@ class EncuestaController extends Controller
 	 */
 	 public function tokenAction($token)
 	 {
-		//  $e = new DEncuesta();
-		//  $e->setLegajo("123");
-		//  $dm = $this->get('doctrine_mongodb')->getManager();
-	    //  $dm->persist($e);
-		//  $dm->flush();
-		//  return new View($e->getId(), Response::HTTP_OK);
-		//  var_dump($token);
+		 $dm = $this->get('doctrine_mongodb')->getManager();
+  		$tmpEncuesta =  $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('token' => $token));
 
-		//  $service = $this->get(EncuestaService::class);
-		//  $restresult = json_decode($service->getEncuestaByToken($token));
-		//  if ($restresult === null) {
-		// 	 return new View("No existe una encuesta relacionada al token", Response::HTTP_NOT_FOUND);
-		//  }
-		//  return new JsonResponse($restresult);
+ 		 return new View($tmpEncuesta, Response::HTTP_OK);
 
+ 		 if ($restresult === null) {
+ 			 return new View("No existe una encuesta relacionada al token", Response::HTTP_NOT_FOUND);
+ 		 }
 	 }
 
 
