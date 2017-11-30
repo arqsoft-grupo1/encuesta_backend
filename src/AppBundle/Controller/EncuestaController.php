@@ -89,14 +89,13 @@ class EncuestaController extends Controller
 	 */
 	 public function tokenAction($token)
 	 {
-		 $dm = $this->get('doctrine_mongodb')->getManager();
+		$dm = $this->get('doctrine_mongodb')->getManager();
   		$tmpEncuesta =  $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('token' => $token));
 
- 		 return new View($tmpEncuesta, Response::HTTP_OK);
-
- 		 if ($restresult === null) {
+ 		 if ($tmpEncuesta === null) {
  			 return new View("No existe una encuesta relacionada al token", Response::HTTP_NOT_FOUND);
  		 }
+		 return new View($tmpEncuesta, Response::HTTP_OK);
 	 }
 
 
