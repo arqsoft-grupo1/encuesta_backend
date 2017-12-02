@@ -61,6 +61,14 @@ class Encuesta
      */
     protected $materias_no_puedoporhorario;
 
+    /**
+     * @var cuatrimestre $token
+     *
+     * @ODM\Field(name="cuatrimestre", type="string")
+     */
+    protected $cuatrimestre;
+
+
 
 
     /**
@@ -211,7 +219,7 @@ class Encuesta
         $this->materias_todaviano = new \Doctrine\Common\Collections\ArrayCollection();
         $this->materias_no_puedoporhorario = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Add materiasAprobada
      *
