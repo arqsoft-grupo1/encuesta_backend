@@ -30,7 +30,6 @@ class EncuestaController extends Controller
 				$tmpComisionElegida = $dm->getRepository('AppBundle:Comision')->findOneBy(array('comision_id' => $tmpMateria['comisionElegida']));
 				$matEncuesta->setComisionElegida($tmpComisionElegida);
 			}
-
 			$tmpmaterias[] = $matEncuesta;
 		}
 
@@ -70,7 +69,7 @@ class EncuestaController extends Controller
 			// $service = new EncuestaService();
 			$service = $this->get(EncuestaService::class);
 			$encuesta = new Encuesta();
-
+			$encuesta->setCuatrimestre('2017C2');
 			$encuesta->setToken($token);
 
 			$encuesta = $this->completarEncuesta($encuesta, $request);
@@ -114,18 +113,21 @@ class EncuestaController extends Controller
 		$encuesta = $this->completarEncuesta($encuesta, $request);
 
 		return new View($encuesta, Response::HTTP_OK);
-		// $legajo = $request->get('legajo');
-		// $encuesta = $request->get('encuesta');
-		// // Devuelve la encuesta guardada para dicho Legajo //
-		// $encuesta_guardada = $service->getEncuestaByLegajo($legajo);
-		//
-
-		// {
-		// 	$encuesta_guardada->setLegajo($legajo);
-		// 	$encuesta_guardada->setEncuesta($encuesta);
-		//
-		// 	$servicio->guardarEncuesta();
-		//
-		// }
 	}
+	/**
+	* @Rest\Get("/api/porcentaje_respuestas")
+	*/
+	public function getEncuestasCompletadasSobreAlumnosAction()
+	{
+
+		$dm = $this->get('doctrine_mongodb')->getManager();
+		$encuestas_respondidas = count($dm->getRepository('AppBundle:Encuesta')->findBy(array('cuatrimestre' => '2017C2')));
+		$alumnos_regulares = count($dm->getRepository('AppBundle:Alumno')->findAll());
+
+		$rta = array('encuestas_respondidas'=> $encuestas_respondidas, 'alumnos_regulares' => $alumnos_regulares);
+
+		return new View($rta, Response::HTTP_OK);
+	}
+
+
 }

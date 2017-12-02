@@ -299,4 +299,26 @@ class Encuesta
     {
         $this->materias_no_puedoporhorario->removeElement($materiasNoPuedoporhorario);
     }
+
+    /**
+     * Set cuatrimestre
+     *
+     * @param string $cuatrimestre
+     * @return $this
+     */
+    public function setCuatrimestre($cuatrimestre)
+    {
+        $this->cuatrimestre = $cuatrimestre;
+        return $this;
+    }
+
+    /**
+     * Get cuatrimestre
+     *
+     * @return string $cuatrimestre
+     */
+    public function getCuatrimestre()
+    {
+        return $this->cuatrimestre;
+    }
 }

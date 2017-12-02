@@ -94,4 +94,26 @@ class Director
     {
         return $this->password;
     }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return $this
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string $email
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
 }
