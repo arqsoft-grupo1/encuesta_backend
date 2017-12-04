@@ -126,4 +126,28 @@ class Materia
     {
         $this->comisiones[] = $comision;
     }
+    public function __construct()
+    {
+        $this->comisiones = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add comisione
+     *
+     * @param $comisione
+     */
+    public function addComisione($comisione)
+    {
+        $this->comisiones[] = $comisione;
+    }
+
+    /**
+     * Remove comisione
+     *
+     * @param $comisione
+     */
+    public function removeComisione($comisione)
+    {
+        $this->comisiones->removeElement($comisione);
+    }
 }

@@ -12,10 +12,11 @@ class OfertaService
     }
 
     function getOferta() {
-        $file = $this->path.'oferta.json';
-        $restresult = file_get_contents($file);
-
-        return $restresult;
+        
+        // $file = $this->path.'oferta.json';
+        // $restresult = file_get_contents($file);
+        //
+        // return $restresult;
     }
 
 }

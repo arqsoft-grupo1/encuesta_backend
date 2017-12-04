@@ -36,14 +36,21 @@ class MateriaController extends Controller
         $dm = $this->get('doctrine_mongodb')->getManager();
         $materia = new Materia();
         $materia->setOrden(1);
-        $materia->setNombre("Introduccion al desarrollo de videojuegos");
+        $materia->setNombre("Base de datos");
 
         $comision = new Comision();
         $comision->setCupo(30);
         $comision->setNombre("C1");
+        $comision->setDiaHorario(array('Martes' => '18 a 22', 'Viernes' => '18 a 22'));
+        $comision2 = new Comision();
+        $comision2->setCupo(30);
+        $comision2->setNombre("C2");
+        $comision2->setDiaHorario(array('Lunes' => '18 a 22', 'Jueves' => '18 a 22'));
         $dm->persist($comision);
+        $dm->persist($comision2);
 
         $materia->addComision($comision);
+        $materia->addComision($comision2);
         $dm->persist($materia);
         $dm->flush();
 
