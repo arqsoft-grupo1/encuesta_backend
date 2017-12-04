@@ -46,6 +46,13 @@ class Comision
 
     protected $nombre;
 
+    /**
+     * @var Materia $materia
+     *
+     * @ODM\ReferenceOne(targetDocument="Materia")
+     */
+    protected $materia;
+
 
     /**
      * Get id
@@ -140,4 +147,26 @@ class Comision
         return $this->getCupo() - count($this->getInscriptos());
     }
 
+
+    /**
+     * Set materia
+     *
+     * @param AppBundle\Document\Materia $materia
+     * @return $this
+     */
+    public function setMateria(\AppBundle\Document\Materia $materia)
+    {
+        $this->materia = $materia;
+        return $this;
+    }
+
+    /**
+     * Get materia
+     *
+     * @return AppBundle\Document\Materia $materia
+     */
+    public function getMateria()
+    {
+        return $this->materia;
+    }
 }
