@@ -149,4 +149,14 @@ class Materia
     {
         $this->comisiones->removeElement($comisione);
     }
+
+    public function getComisionMayorCantidadInscriptos() {
+        $tmp_comision = $this->getComisiones()[0];
+        foreach ($this->getComisiones() as $comision) {
+            if($comision->getCantidadInscriptos() > $tmp_comision->getCantidadInscriptos()) {
+                $tmp_comision = $comision;
+            }
+        }
+        return $tmp_comision;
+    }
 }

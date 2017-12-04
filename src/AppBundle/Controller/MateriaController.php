@@ -24,30 +24,19 @@ class MateriaController extends Controller
     public function getAction(){
         $dm = $this->get('doctrine_mongodb')->getManager();
         $materias =  $dm->getRepository('AppBundle:Materia')->findAll();
-        foreach ($materias as $materia) {
-            $this->ordenarComisiones($materia->getComisiones()->getValues());
-        }
+
         usort($materias, array($this,'cmpMateriasMenorCupoDisponile'));
         return new View($materias, Response::HTTP_OK);
     }
 
-    function ordenarComisiones($comisiones) {
-        return usort($comisiones, array($this, 'cmpComision'));
-    }
-
     function cmpMateriasMenorCupoDisponile($materia1, $materia2) {
-        if ($materia1->getComisiones()[0]->getCupoDisponible() == $materia2->getComisiones()[0]->getCupoDisponible()) {
+        if ($materia1->getComisionMayorCantidadInscriptos()->getCantidadInscriptos() == $materia2->getComisionMayorCantidadInscriptos()->getCantidadInscriptos()) {
             return 0;
         }
-        return ($materia1->getComisiones()[0]->getCupoDisponible() < $materia2->getComisiones()[0]->getCupoDisponible() ? -1 : 1);
+        return ($materia1->getComisionMayorCantidadInscriptos()->getCantidadInscriptos() > $materia2->getComisionMayorCantidadInscriptos()->getCantidadInscriptos() ? -1 : 1);
     }
 
-    function cmpComision($comision1, $comision2){
-        if ($comision1->getCupoDisponible() == $comision2->getCupoDisponible()) {
-            return 0;
-        }
-        return ($comision1->getCupoDisponible() < $comision1->getCupoDisponible() ? -1 : 1);
-    }
+
 
     /**
     * @Rest\Post("/api/materia")

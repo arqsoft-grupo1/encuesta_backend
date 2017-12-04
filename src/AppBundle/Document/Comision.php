@@ -164,7 +164,7 @@ class Comision
         return $this;
     }
 
-    public function getCupoDisponible() {
+    public function getCantidadInscriptos() {
         return count($this->getInscriptos());
     }
 
