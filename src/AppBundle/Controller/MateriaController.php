@@ -63,16 +63,16 @@ class MateriaController extends Controller
 
     function cmpMayorInscriptos($materia1, $materia2) {
         $tmpcomisiones = $materia1->getComisiones();
-        // usort($tmpcomisiones, array($this, 'ordenarCupoDisponible'));
-        // $tmp2comisiones = $materia2->getComisiones();
-        // usort($tmp2comisiones, array($this, 'ordenarCupoDisponible'));
-        // foreach ($tmpcomisiones as $comision) {
-        //         if($tmpcomisiones[0]->getCupoDisponible() == $tmp2comisiones[0]->getCupoDisponible()) {
-        //             return 0;
-        //         }
-        //
-        //         return ($tmpcomisiones[0]->getCupoDisponible() > $tmp2comisiones[0]->getCupoDisponible() ? -1 : 1);
-        // }
+        usort($tmpcomisiones, array($this, 'ordenarCupoDisponible'));
+        $tmp2comisiones = $materia2->getComisiones();
+        usort($tmp2comisiones, array($this, 'ordenarCupoDisponible'));
+        foreach ($tmpcomisiones as $comision) {
+                if($tmpcomisiones[0]->getCupoDisponible() == $tmp2comisiones[0]->getCupoDisponible()) {
+                    return 0;
+                }
+
+                return ($tmpcomisiones[0]->getCupoDisponible() > $tmp2comisiones[0]->getCupoDisponible() ? -1 : 1);
+        }
 
     }
 

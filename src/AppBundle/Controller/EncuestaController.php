@@ -81,8 +81,8 @@ class EncuestaController extends Controller
 		$encuesta->setMateriasTodaviaNo($mat_todaviano);
 
 		// Agrega materias "nopuedohorario" en la encuesta //
-		$materias_nopuedohorario = $request->get('materias_no_puedoporhorario');
-		$mat_nopuedohorario = $this->generarEncuesta($encuesta, $materias_nopuedohorario);
+		$materias_nopuedoporhorario = $request->get('materias_no_puedoporhorario');
+		$mat_nopuedohorario = $this->generarEncuesta($encuesta, $materias_nopuedoporhorario);
 		$encuesta->setMateriasNoPuedoporhorario($mat_nopuedohorario);
 
 		// Agrega materias "nopuedohorario" en la encuesta //
@@ -100,7 +100,6 @@ class EncuestaController extends Controller
 		$dm = $this->get('doctrine_mongodb')->getManager();
 		$tmpEncuesta =  $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('token' => $token));
 		if (is_null($tmpEncuesta)) {
-			$service = $this->get(EncuestaService::class);
 			$encuesta = new Encuesta();
 			$encuesta->setCuatrimestre('2017C2');
 			$encuesta->setLegajo($request->get('legajo'));
