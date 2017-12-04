@@ -40,7 +40,6 @@ class Materia
      */
     protected $comisiones;
 
-
     /**
      * Get id
      *
@@ -130,7 +129,7 @@ class Materia
     {
         $this->comisiones = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Add comisione
      *

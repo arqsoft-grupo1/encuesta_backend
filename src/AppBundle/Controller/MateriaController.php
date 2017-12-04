@@ -24,9 +24,29 @@ class MateriaController extends Controller
     public function getAction(){
         $dm = $this->get('doctrine_mongodb')->getManager();
         $materias =  $dm->getRepository('AppBundle:Materia')->findAll();
-        usort($materias, array($this, 'cmpMayorInscriptos'));
-
+        foreach ($materias as $materia) {
+            $this->ordenarComisiones($materia->getComisiones()->getValues());
+        }
+        usort($materias, array($this,'cmpMateriasMenorCupoDisponile'));
         return new View($materias, Response::HTTP_OK);
+    }
+
+    function ordenarComisiones($comisiones) {
+        return usort($comisiones, array($this, 'cmpComision'));
+    }
+
+    function cmpMateriasMenorCupoDisponile($materia1, $materia2) {
+        if ($materia1->getComisiones()[0]->getCupoDisponible() == $materia2->getComisiones()[0]->getCupoDisponible()) {
+            return 0;
+        }
+        return ($materia1->getComisiones()[0]->getCupoDisponible() < $materia2->getComisiones()[0]->getCupoDisponible() ? -1 : 1);
+    }
+
+    function cmpComision($comision1, $comision2){
+        if ($comision1->getCupoDisponible() == $comision2->getCupoDisponible()) {
+            return 0;
+        }
+        return ($comision1->getCupoDisponible() < $comision1->getCupoDisponible() ? -1 : 1);
     }
 
     /**
@@ -36,16 +56,18 @@ class MateriaController extends Controller
         $dm = $this->get('doctrine_mongodb')->getManager();
         $materia = new Materia();
         $materia->setOrden(1);
-        $materia->setNombre("Base de datos");
+        $materia->setNombre("Introduccion a la programacion");
 
         $comision = new Comision();
         $comision->setCupo(30);
+        $comision->setComisionId(1);
         $comision->setNombre("C1");
-        $comision->setDiaHorario(array('Martes' => '18 a 22', 'Viernes' => '18 a 22'));
+        $comision->setDiaHorario(array('Lunes' => '10 a 12', 'Miercoles' => '18 a 22'));
         $comision2 = new Comision();
         $comision2->setCupo(30);
+        $comision2->setComisionId(4);
         $comision2->setNombre("C2");
-        $comision2->setDiaHorario(array('Lunes' => '18 a 22', 'Jueves' => '18 a 22'));
+        $comision2->setDiaHorario(array('Martes' => '18 a 22', 'Jueves' => '18 a 22'));
         $dm->persist($comision);
         $dm->persist($comision2);
 
@@ -61,26 +83,6 @@ class MateriaController extends Controller
 
 
 
-    function cmpMayorInscriptos($materia1, $materia2) {
-        $tmpcomisiones = $materia1->getComisiones();
-        usort($tmpcomisiones, array($this, 'ordenarCupoDisponible'));
-        $tmp2comisiones = $materia2->getComisiones();
-        usort($tmp2comisiones, array($this, 'ordenarCupoDisponible'));
-        foreach ($tmpcomisiones as $comision) {
-                if($tmpcomisiones[0]->getCupoDisponible() == $tmp2comisiones[0]->getCupoDisponible()) {
-                    return 0;
-                }
 
-                return ($tmpcomisiones[0]->getCupoDisponible() > $tmp2comisiones[0]->getCupoDisponible() ? -1 : 1);
-        }
-
-    }
-
-    function ordenarCupoDisponible($comision1, $comision2){
-        if ($comision1->getCupoDisponible() == $comision2->getCupoDisponible()) {
-            return 0;
-        }
-        return ($comision2->getCupoDisponible() < $comision1->getCupoDisponible() ? -1 : 1);
-    }
 
 }

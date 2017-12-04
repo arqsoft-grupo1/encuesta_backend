@@ -54,7 +54,6 @@ class EncuestaController extends Controller
 		$alumno = $dm->getRepository('AppBundle:Alumno')->findOneBy(array('legajo' => $encuesta->getLegajo()));
 		foreach ($materias as $tmpMateria) {
 			$materia = $dm->getRepository('AppBundle:Materia')->findOneBy(array('nombre' => $tmpMateria['nombre']));
-
 			$matEncuesta = new MateriaEncuesta();
 			$matEncuesta->setMateria($materia);
 			$matEncuesta->setEstado($tmpMateria['estado']);

@@ -27,6 +27,13 @@ class Comision
     protected $dia_horario;
 
     /**
+     * @var int $comision_id
+     *
+     * @ODM\Field(name="comision_id", type="int")
+     */
+    protected $comision_id;
+
+    /**
      * @var int $cupo
      *
      * @ODM\Field(name="cupo", type="int")
@@ -158,7 +165,7 @@ class Comision
     }
 
     public function getCupoDisponible() {
-        return $this->getCupo() - count($this->getInscriptos());
+        return count($this->getInscriptos());
     }
 
 
@@ -182,5 +189,27 @@ class Comision
     public function getMateria()
     {
         return $this->materia;
+    }
+
+    /**
+     * Set comisionId
+     *
+     * @param int $comisionId
+     * @return $this
+     */
+    public function setComisionId($comisionId)
+    {
+        $this->comision_id = $comisionId;
+        return $this;
+    }
+
+    /**
+     * Get comisionId
+     *
+     * @return int $comisionId
+     */
+    public function getComisionId()
+    {
+        return $this->comision_id;
     }
 }
