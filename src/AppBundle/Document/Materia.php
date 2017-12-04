@@ -116,4 +116,14 @@ class Materia
     {
         return $this->comisiones;
     }
+
+    /**
+     * Add comision
+     *
+     * @param AppBundle\Document\Comision $comision
+     */
+    public function addComision(\AppBundle\Document\Comision $comision)
+    {
+        $this->comisiones[] = $comision;
+    }
 }

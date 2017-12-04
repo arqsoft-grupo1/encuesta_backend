@@ -24,8 +24,56 @@ class MateriaController extends Controller
     public function getAction(){
         $dm = $this->get('doctrine_mongodb')->getManager();
         $materias =  $dm->getRepository('AppBundle:Materia')->findAll();
+        usort($materias, array($this, 'cmpMayorInscriptos'));
 
         return new View($materias, Response::HTTP_OK);
+    }
+
+    /**
+    * @Rest\Post("/api/materia")
+    */
+    public function postAction(){
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $materia = new Materia();
+        $materia->setOrden(1);
+        $materia->setNombre("Introduccion al desarrollo de videojuegos");
+
+        $comision = new Comision();
+        $comision->setCupo(30);
+        $comision->setNombre("C1");
+        $dm->persist($comision);
+
+        $materia->addComision($comision);
+        $dm->persist($materia);
+        $dm->flush();
+
+
+        return new View($dm->getRepository('AppBundle:Materia')->findAll(), Response::HTTP_OK);
+    }
+
+
+
+
+    function cmpMayorInscriptos($materia1, $materia2) {
+        $tmpcomisiones = $materia1->getComisiones();
+        // usort($tmpcomisiones, array($this, 'ordenarCupoDisponible'));
+        // $tmp2comisiones = $materia2->getComisiones();
+        // usort($tmp2comisiones, array($this, 'ordenarCupoDisponible'));
+        // foreach ($tmpcomisiones as $comision) {
+        //         if($tmpcomisiones[0]->getCupoDisponible() == $tmp2comisiones[0]->getCupoDisponible()) {
+        //             return 0;
+        //         }
+        //
+        //         return ($tmpcomisiones[0]->getCupoDisponible() > $tmp2comisiones[0]->getCupoDisponible() ? -1 : 1);
+        // }
+
+    }
+
+    function ordenarCupoDisponible($comision1, $comision2){
+        if ($comision1->getCupoDisponible() == $comision2->getCupoDisponible()) {
+            return 0;
+        }
+        return ($comision2->getCupoDisponible() < $comision1->getCupoDisponible() ? -1 : 1);
     }
 
 }

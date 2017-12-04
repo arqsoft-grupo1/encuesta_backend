@@ -46,6 +46,8 @@ class Comision
 
     protected $nombre;
 
+
+
     /**
      * @var Materia $materia
      *
@@ -141,6 +143,18 @@ class Comision
     public function getCupo()
     {
         return $this->cupo;
+    }
+
+    /**
+     * Set nombre
+     *
+     * @param string $nombre
+     * @return $this
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+        return $this;
     }
 
     public function getCupoDisponible() {
