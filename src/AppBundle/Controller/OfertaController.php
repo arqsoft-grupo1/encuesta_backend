@@ -27,7 +27,7 @@ class OfertaController extends FosRestController
         }
 
         // $this->sendMail($mail, $restresult->token);
-        
+
         return new JsonResponse($restresult);
     }
 

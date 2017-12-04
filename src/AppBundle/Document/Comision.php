@@ -26,6 +26,26 @@ class Comision
      */
     protected $dia_horario;
 
+    /**
+     * @var int $cupo
+     *
+     * @ODM\Field(name="cupo", type="int")
+     */
+    protected $cupo;
+
+    /**
+     * @var collection $inscriptos
+     *
+     * @ODM\ReferenceMany(targetDocument="Alumno", cascade="all")
+     */
+    protected $inscriptos;
+
+    protected $dias;
+
+    protected $hora;
+
+    protected $nombre;
+
 
     /**
      * Get id
@@ -58,4 +78,66 @@ class Comision
     {
         return $this->dia_horario;
     }
+
+    public function __construct()
+    {
+        $this->inscriptos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add inscripto
+     *
+     * @param AppBundle\Document\Alumno $inscripto
+     */
+    public function addInscripto(\AppBundle\Document\Alumno $inscripto)
+    {
+        $this->inscriptos[] = $inscripto;
+    }
+
+    /**
+     * Remove inscripto
+     *
+     * @param AppBundle\Document\Alumno $inscripto
+     */
+    public function removeInscripto(\AppBundle\Document\Alumno $inscripto)
+    {
+        $this->inscriptos->removeElement($inscripto);
+    }
+
+    /**
+     * Get inscriptos
+     *
+     * @return \Doctrine\Common\Collections\Collection $inscriptos
+     */
+    public function getInscriptos()
+    {
+        return $this->inscriptos;
+    }
+
+    /**
+     * Set cupo
+     *
+     * @param int $cupo
+     * @return $this
+     */
+    public function setCupo($cupo)
+    {
+        $this->cupo = $cupo;
+        return $this;
+    }
+
+    /**
+     * Get cupo
+     *
+     * @return int $cupo
+     */
+    public function getCupo()
+    {
+        return $this->cupo;
+    }
+
+    public function getCupoDisponible() {
+        return $this->getCupo() - count($this->getInscriptos());
+    }
+
 }

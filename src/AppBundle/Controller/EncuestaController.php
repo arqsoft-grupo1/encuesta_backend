@@ -18,18 +18,52 @@ use AppBundle\Document\MateriaEncuesta as MateriaEncuesta;
 
 class EncuestaController extends Controller
 {
+
+	/**
+	* @Rest\Get("/api/encuesta/porcentaje_respuestas/")
+	*/
+	public function getEncuestasCompletadasSobreAlumnosAction()
+	{
+
+		$dm = $this->get('doctrine_mongodb')->getManager();
+		$encuestas_respondidas = count($dm->getRepository('AppBundle:Encuesta')->findBy(array('cuatrimestre' => '2017C2')));
+		$alumnos_regulares = count($dm->getRepository('AppBundle:Alumno')->findAll());
+
+		$rta = array('encuestas_respondidas'=> $encuestas_respondidas, 'alumnos_regulares' => $alumnos_regulares);
+
+		return new View($rta, Response::HTTP_OK);
+	}
+
+	/**
+	* @Rest\Get("/api/encuesta/{token}")
+	*/
+	public function tokenAction($token)
+	{
+		$dm = $this->get('doctrine_mongodb')->getManager();
+		$tmpEncuesta =  $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('token' => $token));
+
+		if ($tmpEncuesta === null) {
+			return new View("No existe una encuesta relacionada al token", Response::HTTP_NOT_FOUND);
+		}
+		return new View($tmpEncuesta, Response::HTTP_OK);
+	}
+
 	private function generarEncuesta($encuesta, $materias) {
 		$tmpmaterias = [];
+		$dm = $this->get('doctrine_mongodb')->getManager();
+		$alumno = $dm->getRepository('AppBundle:Alumno')->findOneBy(array('legajo' => $encuesta->getLegajo()));
 		foreach ($materias as $tmpMateria) {
-			$dm = $this->get('doctrine_mongodb')->getManager();
 			$materia = $dm->getRepository('AppBundle:Materia')->findOneBy(array('nombre' => $tmpMateria['nombre']));
+
 			$matEncuesta = new MateriaEncuesta();
 			$matEncuesta->setMateria($materia);
 			$matEncuesta->setEstado($tmpMateria['estado']);
 			if(array_key_exists('comisionElegida', $tmpMateria)) {
 				$tmpComisionElegida = $dm->getRepository('AppBundle:Comision')->findOneBy(array('comision_id' => $tmpMateria['comisionElegida']));
+				$tmpComisionElegida->addInscripto($alumno);
 				$matEncuesta->setComisionElegida($tmpComisionElegida);
 			}
+
 			$tmpmaterias[] = $matEncuesta;
 		}
 
@@ -66,10 +100,10 @@ class EncuestaController extends Controller
 		$dm = $this->get('doctrine_mongodb')->getManager();
 		$tmpEncuesta =  $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('token' => $token));
 		if (is_null($tmpEncuesta)) {
-			// $service = new EncuestaService();
 			$service = $this->get(EncuestaService::class);
 			$encuesta = new Encuesta();
 			$encuesta->setCuatrimestre('2017C2');
+			$encuesta->setLegajo($request->get('legajo'));
 			$encuesta->setToken($token);
 
 			$encuesta = $this->completarEncuesta($encuesta, $request);
@@ -82,22 +116,6 @@ class EncuestaController extends Controller
 
 		}
 	 }
-
-	 /**
-	 * @Rest\Get("/api/encuesta/{token}")
-	 */
-	 public function tokenAction($token)
-	 {
-		$dm = $this->get('doctrine_mongodb')->getManager();
-  		$tmpEncuesta =  $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('token' => $token));
-
- 		 if ($tmpEncuesta === null) {
- 			 return new View("No existe una encuesta relacionada al token", Response::HTTP_NOT_FOUND);
- 		 }
-		 return new View($tmpEncuesta, Response::HTTP_OK);
-	 }
-
-
 
 	 /**
 	* @Rest\Put("/api/encuesta/{token}")
@@ -114,20 +132,4 @@ class EncuestaController extends Controller
 
 		return new View($encuesta, Response::HTTP_OK);
 	}
-	/**
-	* @Rest\Get("/api/porcentaje_respuestas")
-	*/
-	public function getEncuestasCompletadasSobreAlumnosAction()
-	{
-
-		$dm = $this->get('doctrine_mongodb')->getManager();
-		$encuestas_respondidas = count($dm->getRepository('AppBundle:Encuesta')->findBy(array('cuatrimestre' => '2017C2')));
-		$alumnos_regulares = count($dm->getRepository('AppBundle:Alumno')->findAll());
-
-		$rta = array('encuestas_respondidas'=> $encuestas_respondidas, 'alumnos_regulares' => $alumnos_regulares);
-
-		return new View($rta, Response::HTTP_OK);
-	}
-
-
 }

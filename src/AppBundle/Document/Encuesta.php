@@ -20,9 +20,9 @@ class Encuesta
     protected $id;
 
     /**
-     * @var string $legajo
+     * @var int $legajo
      *
-     * @ODM\Field(name="legajo", type="string")
+     * @ODM\Field(name="legajo", type="int")
      */
     protected $legajo;
 
@@ -84,7 +84,7 @@ class Encuesta
     /**
      * Set legajo
      *
-     * @param string $legajo
+     * @param int $legajo
      * @return $this
      */
     public function setLegajo($legajo)
@@ -96,7 +96,7 @@ class Encuesta
     /**
      * Get legajo
      *
-     * @return string $legajo
+     * @return int $legajo
      */
     public function getLegajo()
     {
