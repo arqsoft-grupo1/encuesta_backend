@@ -36,7 +36,7 @@ class Materia
     /**
      * @var collection $comisiones
      *
-     * @ODM\Field(name="comisiones", type="collection")
+     * @ODM\ReferenceMany(name="comisiones")
      */
     protected $comisiones;
 
