@@ -27,6 +27,13 @@ class Materia
     protected $nombre;
 
     /**
+     * @var string $estado
+     *
+     * @ODM\Field(name="estado", type="string")
+     */
+    protected $estado;
+
+    /**
      * @var int $orden
      *
      * @ODM\Field(name="orden", type="int")
@@ -70,6 +77,28 @@ class Materia
     public function getNombre()
     {
         return $this->nombre;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return string $estado
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    /**
+     * Set estado
+     *
+     * @param string $estado
+     * @return $this
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+        return $this;
     }
 
     /**

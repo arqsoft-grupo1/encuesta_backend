@@ -92,14 +92,14 @@ class EncuestaController extends Controller
 		return $encuesta;
 	}
 	 /**
-	 * @Rest\Post("/api/encuesta/{token}")
+	 * @Rest\Put("/api/encuesta/{token}")
 	 */
-	 public function postAction(Request $request, $token)
+	 public function updateAction(Request $request, $token)
 	 {
 		$dm = $this->get('doctrine_mongodb')->getManager();
-		$tmpEncuesta =  $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('token' => $token));
-		if (is_null($tmpEncuesta)) {
-			$encuesta = new Encuesta();
+		$encuesta =  $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('token' => $token));
+		// if (is_null($tmpEncuesta)) {
+			// $encuesta = new Encuesta();
 			$encuesta->setCuatrimestre('2017C2');
 			$encuesta->setLegajo($request->get('legajo'));
 			$encuesta->setToken($token);
@@ -109,25 +109,25 @@ class EncuestaController extends Controller
 			$dm->persist($encuesta);
 			$dm->flush();
 			return new View($encuesta, Response::HTTP_OK);
-		} else {
-			return new View($tmpEncuesta, Response::HTTP_OK);
+		// } else {
+		// 	return new View($tmpEncuesta, Response::HTTP_OK);
 
-		}
+
 	 }
 
-	 /**
-	* @Rest\Put("/api/encuesta/{token}")
-	*/
-	public function updateAction(Request $request, $token)
-	{
-		// $service = $this->get(EncuestaService::class);
-		$dm = $this->get('doctrine_mongodb')->getManager();
-		$encuesta = $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('token' => $token));
-		if (empty($encuesta)) {
-		    return new View("La encuesta no ha sido respondida aun", Response::HTTP_NOT_FOUND);
-		}
-		$encuesta = $this->completarEncuesta($encuesta, $request);
-
-		return new View($encuesta, Response::HTTP_OK);
-	}
+	//  /**
+	// * @Rest\Put("/api/encuesta/{token}")
+	// */
+	// public function updateAction(Request $request, $token)
+	// {
+	// 	// $service = $this->get(EncuestaService::class);
+	// 	$dm = $this->get('doctrine_mongodb')->getManager();
+	// 	$encuesta = $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('token' => $token));
+	// 	if (empty($encuesta)) {
+	// 	    return new View("La encuesta no ha sido respondida aun", Response::HTTP_NOT_FOUND);
+	// 	}
+	// 	$encuesta = $this->completarEncuesta($encuesta, $request);
+	//
+	// 	return new View($encuesta, Response::HTTP_OK);
+	// }
 }

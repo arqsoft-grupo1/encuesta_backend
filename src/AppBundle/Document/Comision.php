@@ -53,7 +53,7 @@ class Comision
 
     protected $nombre;
 
-
+    protected $cantidadInscriptos;
 
     /**
      * @var Materia $materia
