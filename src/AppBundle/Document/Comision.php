@@ -51,6 +51,11 @@ class Comision
 
     protected $hora;
 
+    /**
+     * @var string $nombre
+     *
+     * @ODM\Field(name="nombre", type="string")
+     */
     protected $nombre;
 
     protected $cantidadInscriptos;
@@ -211,5 +216,15 @@ class Comision
     public function getComisionId()
     {
         return $this->comision_id;
+    }
+
+    /**
+     * Get nombre
+     *
+     * @return string $nombre
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
     }
 }
