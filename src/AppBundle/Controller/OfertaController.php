@@ -26,12 +26,14 @@ class OfertaController extends FosRestController
         $dm = $this->get('doctrine_mongodb')->getManager();
         $alumno = $dm->getRepository('AppBundle:Alumno')->findOneBy(array('email' => $mail));
 
-        /*Valida que el mail se encuentre registrado para un alumno en la base de datos, de lo
-        contrario retorna Not Found
+        /*
+            Valida que el mail se encuentre registrado para un alumno en la base de datos, de lo
+            contrario retorna Not Found
         */
         if (is_null($alumno)) {
             return new View(array("estado"=> "Alumno inexistente"), Response::HTTP_NOT_FOUND);
         } else {
+
             /* Valida si existe una encuesta para esta persona en este cuatrimestre */
             $oferta = new Oferta();
             $encuesta_guardada  = $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('legajo' => $alumno->getLegajo(), 'cuatrimestre' => '2017C2'));
@@ -39,49 +41,66 @@ class OfertaController extends FosRestController
                 $encuesta_anterior = $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('legajo' => $alumno->getLegajo()));
                 if ($this->tieneEncuestaAnterior($encuesta_anterior)) {
                     /*Su tiene encuesta anterior, en base a las respuestas arma la nueva oferta */
-                    $token = uniqid();
-                    $this->agregarMateriasAOferta($oferta, $encuesta_anterior->getMateriasAprobadas(), 'yaaprobe');
-                    $this->agregarMateriasAOferta($oferta, $encuesta_anterior->getMateriasACursar(), 'todaviano');
-                    $this->agregarMateriasAOferta($oferta, $encuesta_anterior->getMateriasTodaviano(), 'todaviano');
-                    $this->agregarMateriasAOferta($oferta, $encuesta_anterior->getMateriasNoPuedoporhorario(), 'todaviano');
-                    $restresult['oferta'] = $oferta->getMaterias();
-                    $restresult['token'] = $token;
-
+                    $restresult = $this->generarOfertaDesdeEncuestaAnterior($oferta, $encuesta_anterior);
                     return new View($restresult, Response::HTTP_OK);
                 } else {
                     /* Si no tiene encuesta anterior genera una nueva encuesta en base a las materias */
-                    $token = uniqid();
-                    $materias = $dm->getRepository('AppBundle:Materia')->findAll();
-                    foreach ($materias as $materia) {
-                        $materia->setEstado('todaviano');
-                        $oferta->addMateria($materia);
-                    }
-
-                    $restresult['oferta'] = $oferta->getMaterias();
-                    $restresult['token'] = $token;
-                    $encuesta = new Encuesta();
-                    $encuesta->setToken($token);
-                    $dm->persist($encuesta);
-                    $dm->flush();
-
+                    $restresult = $this->generarPrimerOfertaDeLaCarrera($oferta);
                     // $this->sendMail($mail, $token);
-
                     return new View($restresult, Response::HTTP_OK);
                 }
                 // return new View(array("estado"=> "Se creara una nueva Oferta", "token" => $token), Response::HTTP_NOT_FOUND);
             } else  {
-                /* Si llega aca es porque ya respondio la encuesta en este cuatrimestre por lo cual la editaria */
-                $token = $encuesta_guardada->getToken();
-                /*Arma la oferta en base a la encuesta anterior*/
-                $this->agregarMateriasAOferta($oferta, $encuesta_guardada->getMateriasAprobadas(), 'yaaprobe');
-                $this->agregarMateriasAOferta($oferta, $encuesta_guardada->getMateriasACursar(), 'voyacursar');
-                $this->agregarMateriasAOferta($oferta, $encuesta_guardada->getMateriasTodaviano(), 'todaviano');
-                $this->agregarMateriasAOferta($oferta, $encuesta_guardada->getMateriasNoPuedoporhorario(), 'nopuedohorario');
-                $restresult['oferta'] = $oferta->getMaterias();
-                $restresult['token'] = $token;
+                // return new View(array("estado"=> "Esta modificando"), Response::HTTP_OK);
+                $restresult = $this->generarOfertaConEncuestaModificacion($encuesta_guardada, $oferta);
                 return new View($restresult, Response::HTTP_OK);
             }
         }
+    }
+
+    private function generarOfertaDesdeEncuestaAnterior($oferta, $encuesta_anterior) {
+        $token = uniqid();
+        $this->agregarMateriasAOferta($oferta, $encuesta_anterior->getMateriasAprobadas(), 'yaaprobe');
+        $this->agregarMateriasAOferta($oferta, $encuesta_anterior->getMateriasACursar(), 'todaviano');
+        $this->agregarMateriasAOferta($oferta, $encuesta_anterior->getMateriasTodaviano(), 'todaviano');
+        $this->agregarMateriasAOferta($oferta, $encuesta_anterior->getMateriasNoPuedoporhorario(), 'todaviano');
+        $restresult['oferta'] = $oferta->getMaterias();
+        $restresult['token'] = $token;
+
+        return $restresult;
+    }
+
+    private function generarPrimerOfertaDeLaCarrera($oferta) {
+        $token = uniqid();
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $materias = $dm->getRepository('AppBundle:Materia')->findAll();
+        foreach ($materias as $materia) {
+            $materia->setEstado('todaviano');
+            $oferta->addMateria($materia);
+        }
+
+        $restresult['oferta'] = $oferta->getMaterias();
+        $restresult['token'] = $token;
+        $encuesta = new Encuesta();
+        $encuesta->setToken($token);
+        $dm->persist($encuesta);
+        $dm->flush();
+
+        return $restresult;
+    }
+
+    private function generarOfertaConEncuestaModificacion($encuesta_guardada, $oferta) {
+        /* Si llega aca es porque ya respondio la encuesta en este cuatrimestre por lo cual la editaria */
+        $token = $encuesta_guardada->getToken();
+        /*Arma la oferta en base a la encuesta anterior*/
+        $this->agregarMateriasAOferta($oferta, $encuesta_guardada->getMateriasAprobadas(), 'yaaprobe');
+        $this->agregarMateriasAOferta($oferta, $encuesta_guardada->getMateriasACursar(), 'voyacursar');
+        $this->agregarMateriasAOferta($oferta, $encuesta_guardada->getMateriasTodaviano(), 'todaviano');
+        $this->agregarMateriasAOferta($oferta, $encuesta_guardada->getMateriasNoPuedoporhorario(), 'nopuedohorario');
+        $restresult['oferta'] = $oferta->getMaterias();
+        $restresult['token'] = $token;
+        return new View($restresult, Response::HTTP_OK);
+        return $restresult;
     }
 
     private function agregarMateriasAOferta($oferta, $materias, $estado) {
