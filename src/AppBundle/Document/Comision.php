@@ -20,6 +20,13 @@ class Comision
     protected $id;
 
     /**
+     * @var string $nombre
+     *
+     * @ODM\Field(name="nombre", type="string")
+     */
+     protected $nombre;
+
+    /**
      * @var hash $dia_horario
      *
      * @ODM\Field(name="dia_horario", type="hash")
@@ -47,11 +54,11 @@ class Comision
      */
     protected $inscriptos;
 
+
+
     protected $dias;
 
     protected $hora;
-
-    protected $nombre;
 
     protected $cantidadInscriptos;
 
@@ -62,6 +69,10 @@ class Comision
      */
     protected $materia;
 
+    public function __construct()
+    {
+        $this->inscriptos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -71,6 +82,28 @@ class Comision
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set nombre
+     *
+     * @param string $nombre
+     * @return $this
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+        return $this;
+    }
+
+    /**
+     * Get nombre
+     *
+     * @return string $nombre
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
     }
 
     /**
@@ -95,9 +128,48 @@ class Comision
         return $this->dia_horario;
     }
 
-    public function __construct()
+    /**
+     * Set comisionId
+     *
+     * @param int $comisionId
+     * @return $this
+     */
+    public function setComisionId($comisionId)
     {
-        $this->inscriptos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comision_id = $comisionId;
+        return $this;
+    }
+
+    /**
+     * Get comisionId
+     *
+     * @return int $comisionId
+     */
+    public function getComisionId()
+    {
+        return $this->comision_id;
+    }
+
+    /**
+     * Set cupo
+     *
+     * @param int $cupo
+     * @return $this
+     */
+    public function setCupo($cupo)
+    {
+        $this->cupo = $cupo;
+        return $this;
+    }
+
+    /**
+     * Get cupo
+     *
+     * @return int $cupo
+     */
+    public function getCupo()
+    {
+        return $this->cupo;
     }
 
     /**
@@ -131,45 +203,6 @@ class Comision
     }
 
     /**
-     * Set cupo
-     *
-     * @param int $cupo
-     * @return $this
-     */
-    public function setCupo($cupo)
-    {
-        $this->cupo = $cupo;
-        return $this;
-    }
-
-    /**
-     * Get cupo
-     *
-     * @return int $cupo
-     */
-    public function getCupo()
-    {
-        return $this->cupo;
-    }
-
-    /**
-     * Set nombre
-     *
-     * @param string $nombre
-     * @return $this
-     */
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
-        return $this;
-    }
-
-    public function getCantidadInscriptos() {
-        return count($this->getInscriptos());
-    }
-
-
-    /**
      * Set materia
      *
      * @param AppBundle\Document\Materia $materia
@@ -191,25 +224,7 @@ class Comision
         return $this->materia;
     }
 
-    /**
-     * Set comisionId
-     *
-     * @param int $comisionId
-     * @return $this
-     */
-    public function setComisionId($comisionId)
-    {
-        $this->comision_id = $comisionId;
-        return $this;
-    }
-
-    /**
-     * Get comisionId
-     *
-     * @return int $comisionId
-     */
-    public function getComisionId()
-    {
-        return $this->comision_id;
-    }
+    public function getCantidadInscriptos() {
+        return count($this->getInscriptos());
+    }    
 }
