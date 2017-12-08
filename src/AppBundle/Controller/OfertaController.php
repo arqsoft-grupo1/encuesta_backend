@@ -25,7 +25,6 @@ class OfertaController extends FosRestController
     {
         $dm = $this->get('doctrine_mongodb')->getManager();
         $alumno = $dm->getRepository('AppBundle:Alumno')->findOneBy(array('email' => $mail));
-
         /*
             Valida que el mail se encuentre registrado para un alumno en la base de datos, de lo
             contrario retorna Not Found
@@ -99,7 +98,6 @@ class OfertaController extends FosRestController
         $this->agregarMateriasAOferta($oferta, $encuesta_guardada->getMateriasNoPuedoporhorario(), 'nopuedohorario');
         $restresult['oferta'] = $oferta->getMaterias();
         $restresult['token'] = $token;
-        return new View($restresult, Response::HTTP_OK);
         return $restresult;
     }
 
