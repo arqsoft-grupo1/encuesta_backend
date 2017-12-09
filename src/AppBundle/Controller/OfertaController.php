@@ -75,7 +75,7 @@ class OfertaController extends FosRestController
             $alumno->setToken($token);
             $dm->persist($alumno);
             $dm->flush();
-
+            $this->sendMail($mail, $token);
             return new View(array("token" => $token), Response::HTTP_OK);
         }
     }
@@ -117,7 +117,7 @@ class OfertaController extends FosRestController
    //                     /*Su tiene encuesta anterior, en base a las respuestas arma la nueva oferta */
    //                     $restresult = $this->generarOfertaDesdeEncuestaAnterior($oferta, $encuesta_anterior);
    //                     return new View($restresult, Response::HTTP_OK);
-   //                 } else {
+   //                 sendMail} else {
    //                     /* Si no tiene encuesta anterior genera una nueva encuesta en base a las materias */
    //                     $restresult = $this->generarPrimerOfertaDeLaCarrera($oferta, $alumno->getToken());
    //                     $encuesta = new Encuesta();
@@ -201,13 +201,13 @@ class OfertaController extends FosRestController
 
     public function sendMail($mail, $token)
        {
-           $message = \Swift_Message::newInstance()
-                           ->setSubject('Martin ramos')
+           $message = (new \Swift_Message('Encuesta UNQ'))
+                           ->setSubject('')
                            ->setFrom('admin_encuesta@gmail.com')
                            ->setTo($mail)
                            ->setBody("
                                 <span lang='ES-AR'>
-                                    <a href='http://arq-sof-encuesta-backend.herokuapp.com/api/encuesta/$token' target='_blank' rel='noreferrer'>
+                                    <a href='http://localhost:4200/encuesta/$token' target='_blank' rel='noreferrer'>
                                     <b>
                                         <span style='font-size: 16.0pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; color: #0070C0'>
                                             CLICK AQUÍ: ACCESO A LA ENCUESTA

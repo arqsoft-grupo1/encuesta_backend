@@ -26,4 +26,23 @@ class AlumnoController extends Controller{
         return new View($alumno, Response::HTTP_OK);
     }
 
+    /**
+    * @Rest\Put("/api/alumno/{legajo}")
+    */
+    public function updateAction(Request $request, $legajo)
+    {
+       $dm = $this->get('doctrine_mongodb')->getManager();
+       $alumno =  $dm->getRepository('AppBundle:Alumno')->findOneBy(array('legajo' => +$legajo));
+       if ($alumno === null) {
+           return new View(array("respuesta" => +$legajo), Response::HTTP_NOT_FOUND);
+       }
+
+       $alumno->setMail('marprg@gmail.com');
+
+
+       $dm->persist($alumno);
+       $dm->flush();
+       return new View($alumno, Response::HTTP_OK);
+    }
+
 }
