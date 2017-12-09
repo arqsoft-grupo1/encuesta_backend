@@ -51,7 +51,7 @@ class EncuestaController extends Controller
 	private function generarEncuesta($encuesta, $materias) {
 		$tmpmaterias = [];
 		$dm = $this->get('doctrine_mongodb')->getManager();
-		$alumno = $dm->getRepository('AppBundle:Alumno')->findOneBy(array('legajo' => $encuesta->getLegajo()));
+		$alumno = $dm->getRepository('AppBundle:Alumno')->findOneBy(array('token' => $encuesta->getToken()));
 		foreach ($materias as $tmpMateria) {
 			$materia = $dm->getRepository('AppBundle:Materia')->findOneBy(array('nombre' => $tmpMateria['nombre']));
 			$matEncuesta = new MateriaEncuesta();
@@ -98,6 +98,7 @@ class EncuestaController extends Controller
 	 {
 		$dm = $this->get('doctrine_mongodb')->getManager();
 		$encuesta =  $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('token' => $token));
+		
 		// if (is_null($tmpEncuesta)) {
 			// $encuesta = new Encuesta();
 			$encuesta->setCuatrimestre('2017C2');

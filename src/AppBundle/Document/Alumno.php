@@ -34,6 +34,13 @@ class Alumno
     protected $mail;
 
     /**
+     * @var string $token
+     *
+     * @ODM\Field(name="token", type="string")
+     */
+    protected $token;
+
+    /**
      * @var int $legajo
      *
      * @ODM\Field(name="legajo", type="int")
@@ -115,5 +122,27 @@ class Alumno
     public function getLegajo()
     {
         return $this->legajo;
+    }
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     * @return $this
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string $token
+     */
+    public function getToken()
+    {
+        return $this->token;
     }
 }

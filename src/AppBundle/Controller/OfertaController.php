@@ -14,17 +14,55 @@ use AppBundle\Services\OfertaService;
 use AppBundle\Document\Oferta;
 use AppBundle\Document\Encuesta;
 use AppBundle\Document\MateriaOferta;
+use AppBundle\Document\MateriaEncuesta;
 
 
 class OfertaController extends FosRestController
 {
-     /**
-     * @Rest\Get("/api/oferta/{mail}")
-     */
-    public function getAction($mail)
-    {
+    /**
+    * @Rest\Get("/api/oferta/{token}")
+    */
+   public function getAction($token)
+   {
+       $dm = $this->get('doctrine_mongodb')->getManager();
+       $encuesta = $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('token' => $token));
+       $alumno = $dm->getRepository('AppBundle:Alumno')->findOneBy(array('token' => $token));
+
+       if (is_null($encuesta)) {
+        //    return new View(array("oferta"=> "blablabla"), Response::HTTP_OK);
+           $encuesta = new Encuesta();
+           $encuesta->setToken($token);
+           $dm->persist($encuesta);
+           $dm->flush();
+
+           $oferta = new Oferta();
+           $this->generarPrimerOfertaDeLaCarrera($encuesta, $oferta, $token);
+
+           return new View(array("oferta"=> $oferta->getMaterias()), Response::HTTP_OK);
+       } else {
+           if($this->ExisteEncuestaCompleta($encuesta)) {
+               /*Modificacion de encuesta*/
+               $oferta = new Oferta();
+               $this->generarOfertaConEncuestaModificacion($encuesta, $oferta);
+               return new View(array("oferta"=> $oferta->getMaterias()), Response::HTTP_OK);
+           } else {
+               /*Genera la primer oferta de la carrera, ya que no existen anteriores ni actuales*/
+            //    return new View(array("oferta"=> "blablabla"), Response::HTTP_OK);
+               $oferta = new Oferta();
+               $this->generarPrimerOfertaDeLaCarrera($encuesta, $oferta, $token);
+               return new View(array("oferta"=> $oferta->getMaterias()), Response::HTTP_OK);
+           }
+
+           return new View(array("respuesta"=> "Hay encuesta"), Response::HTTP_OK);
+       }
+
+   }
+    /**
+    * @Rest\Get("/api/oferta/token/{mail}")
+    */
+    public function getTokenAction($mail) {
         $dm = $this->get('doctrine_mongodb')->getManager();
-        $alumno = $dm->getRepository('AppBundle:Alumno')->findOneBy(array('email' => $mail));
+        $alumno = $dm->getRepository('AppBundle:Alumno')->findOneBy(array('mail' => $mail));
         /*
             Valida que el mail se encuentre registrado para un alumno en la base de datos, de lo
             contrario retorna Not Found
@@ -32,30 +70,79 @@ class OfertaController extends FosRestController
         if (is_null($alumno)) {
             return new View(array("estado"=> "Alumno inexistente"), Response::HTTP_NOT_FOUND);
         } else {
+            $token = uniqid();
 
-            /* Valida si existe una encuesta para esta persona en este cuatrimestre */
-            $oferta = new Oferta();
-            $encuesta_guardada  = $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('legajo' => $alumno->getLegajo(), 'cuatrimestre' => '2017C2'));
-            if (!$this->hayEncuestaGuardadaEnCuatrimestre($encuesta_guardada)) {
-                $encuesta_anterior = $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('legajo' => $alumno->getLegajo()));
-                if ($this->tieneEncuestaAnterior($encuesta_anterior)) {
-                    /*Su tiene encuesta anterior, en base a las respuestas arma la nueva oferta */
-                    $restresult = $this->generarOfertaDesdeEncuestaAnterior($oferta, $encuesta_anterior);
-                    return new View($restresult, Response::HTTP_OK);
-                } else {
-                    /* Si no tiene encuesta anterior genera una nueva encuesta en base a las materias */
-                    $restresult = $this->generarPrimerOfertaDeLaCarrera($oferta);
-                    // $this->sendMail($mail, $token);
-                    return new View($restresult, Response::HTTP_OK);
-                }
-                // return new View(array("estado"=> "Se creara una nueva Oferta", "token" => $token), Response::HTTP_NOT_FOUND);
-            } else  {
-                // return new View(array("estado"=> "Esta modificando"), Response::HTTP_OK);
-                $restresult = $this->generarOfertaConEncuestaModificacion($encuesta_guardada, $oferta);
-                return new View($restresult, Response::HTTP_OK);
-            }
+            $alumno->setToken($token);
+            $dm->persist($alumno);
+            $dm->flush();
+
+            return new View(array("token" => $token), Response::HTTP_OK);
         }
     }
+    private function ExisteEncuestaCompleta($encuesta) {
+        if (is_null($encuesta)) {
+            return false;
+        }
+        if ($encuesta->getCuatrimestre() == '') {
+            return false;
+        }
+        return true;
+    }
+
+
+
+   //  /**
+   //  * @Rest\Get("/api/oferta/{token}")
+   //  */
+   // public function getAction($token)
+   // {
+   //     $dm = $this->get('doctrine_mongodb')->getManager();
+   //     $alumno = $dm->getRepository('AppBundle:Alumno')->findOneBy(array('token' => $token));
+   //     /*
+   //         Valida que el mail se encuentre registrado para un alumno en la base de datos, de lo
+   //         contrario retorna Not Found
+   //     */
+   //     $encuesta = $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('token' => $token));
+   //     // return new View(array("estado"=> is_null($encuesta->getCuatrimestre())), Response::HTTP_NOT_FOUND);
+   //     if(!$this->ExisteEncuestaCompleta($encuesta)) {
+   //         if (is_null($alumno)) {
+   //             return new View(array("estado"=> "Alumno inexistente"), Response::HTTP_NOT_FOUND);
+   //         } else {
+   //             /* Valida si existe una encuesta para esta persona en este cuatrimestre */
+   //             $oferta = new Oferta();
+   //             $encuesta_guardada  = $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('token' => $alumno->getToken(), 'cuatrimestre' => '2017C2'));
+   //             if (!$this->hayEncuestaGuardadaEnCuatrimestre($encuesta_guardada)) {
+   //                 $encuesta_anterior = $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('legajo' => $alumno->getLegajo()));
+   //                 if ($this->tieneEncuestaAnterior($encuesta_anterior)) {
+   //                     /*Su tiene encuesta anterior, en base a las respuestas arma la nueva oferta */
+   //                     $restresult = $this->generarOfertaDesdeEncuestaAnterior($oferta, $encuesta_anterior);
+   //                     return new View($restresult, Response::HTTP_OK);
+   //                 } else {
+   //                     /* Si no tiene encuesta anterior genera una nueva encuesta en base a las materias */
+   //                     $restresult = $this->generarPrimerOfertaDeLaCarrera($oferta, $alumno->getToken());
+   //                     $encuesta = new Encuesta();
+   //                     $encuesta->setToken($token);
+   //
+   //                     $dm->persist($encuesta);
+   //                     $dm->flush();
+   //                     // $this->sendMail($mail, $token);
+   //                     // return new View("Pruebaaaa", Response::HTTP_OK);
+   //                     return new View($restresult, Response::HTTP_OK);
+   //                 }
+   //                 // return new View(array("estado"=> "Se creara una nueva Oferta", "token" => $token), Response::HTTP_NOT_FOUND);
+   //             } else  {
+   //                 // return new View(array("estado"=> "Esta modificando"), Response::HTTP_OK);
+   //                 $restresult = $this->generarOfertaConEncuestaModificacion($encuesta_guardada, $oferta);
+   //                 return new View($restresult, Response::HTTP_OK);
+   //             }
+   //         }
+   //     } else {
+   //         $oferta = new Oferta();
+   //         return new View("ksbdsakndas", Response::HTTP_OK);
+   //         $restresult = $this->generarPrimerOfertaDeLaCarrera($oferta, $alumno->getToken());
+   //         return new View($restresult, Response::HTTP_OK);
+   //     }
+   // }
 
     private function generarOfertaDesdeEncuestaAnterior($oferta, $encuesta_anterior) {
         $token = uniqid();
@@ -69,21 +156,25 @@ class OfertaController extends FosRestController
         return $restresult;
     }
 
-    private function generarPrimerOfertaDeLaCarrera($oferta) {
-        $token = uniqid();
+    private function generarPrimerOfertaDeLaCarrera($encuesta, $oferta, $token) {
         $dm = $this->get('doctrine_mongodb')->getManager();
         $materias = $dm->getRepository('AppBundle:Materia')->findAll();
         foreach ($materias as $materia) {
             $materia->setEstado('todaviano');
             $oferta->addMateria($materia);
+            $materiaEncuesta = new materiaEncuesta();
+            $materiaEncuesta->setMateria($materia);
+            $materiaEncuesta->setEstado('todaviano');
+            $encuesta->addMateriasTodaviano($materiaEncuesta);
         }
+        $encuesta->setCuatrimestre('2017C2');
+
+        $dm->persist($encuesta);
+        $dm->flush();
 
         $restresult['oferta'] = $oferta->getMaterias();
         $restresult['token'] = $token;
-        $encuesta = new Encuesta();
-        $encuesta->setToken($token);
-        $dm->persist($encuesta);
-        $dm->flush();
+
 
         return $restresult;
     }
@@ -96,9 +187,9 @@ class OfertaController extends FosRestController
         $this->agregarMateriasAOferta($oferta, $encuesta_guardada->getMateriasACursar(), 'voyacursar');
         $this->agregarMateriasAOferta($oferta, $encuesta_guardada->getMateriasTodaviano(), 'todaviano');
         $this->agregarMateriasAOferta($oferta, $encuesta_guardada->getMateriasNoPuedoporhorario(), 'nopuedohorario');
-        $restresult['oferta'] = $oferta->getMaterias();
-        $restresult['token'] = $token;
-        return $restresult;
+
+
+        return array('oferta' => $oferta->getMaterias(), 'token'=> $token);
     }
 
     private function agregarMateriasAOferta($oferta, $materias, $estado) {
