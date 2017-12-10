@@ -23,7 +23,7 @@ class AlumnoController extends Controller{
        $dm = $this->get('doctrine_mongodb')->getManager();
        $alumno =  $dm->getRepository('AppBundle:Alumno')->findOneBy(array('legajo' => +$legajo));
        if ($alumno === null) {
-           return new View(array("respuesta" => +$legajo), Response::HTTP_NOT_FOUND);
+           return new View($legajo, Response::HTTP_NOT_FOUND);
        }
 
        $alumno->setMail($mail);
