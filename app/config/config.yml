@@ -7,7 +7,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
-    mongodb_server: "mongodb://localhost:27017"
+    mongodb_server: "mongodb://mongo:mongo123@ds135486.mlab.com:35486/encuesta_academica"
 
 framework:
     #esi: ~
