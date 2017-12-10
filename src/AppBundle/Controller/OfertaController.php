@@ -70,13 +70,16 @@ class OfertaController extends FosRestController
         if (is_null($alumno)) {
             return new View(array("estado"=> "Alumno inexistente"), Response::HTTP_NOT_FOUND);
         } else {
-            $token = uniqid();
+            if(is_null($alumno->getToken())) {
+                $token = uniqid();
+                $alumno->setToken($token);
+                $dm->persist($alumno);
+                $dm->flush();
+            }
 
-            $alumno->setToken($token);
-            $dm->persist($alumno);
-            $dm->flush();
-            $this->sendMail($mail, $token);
-            return new View(array("token" => $token), Response::HTTP_OK);
+            $this->sendMail($mail, $alumno->getToken());
+
+            return new View(array("token" => $alumno->getToken()), Response::HTTP_OK);
         }
     }
     private function ExisteEncuestaCompleta($encuesta) {
