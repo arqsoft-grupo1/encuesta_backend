@@ -96,7 +96,7 @@ class OfertaController extends FosRestController
 
             $this->sendMail($mail, $alumno->getToken());
 
-            return new View(array("token" => $alumno->getToken()), Response::HTTP_OK);
+            return new View($alumno->getToken(), Response::HTTP_OK);
         }
     }
     private function ExisteEncuestaCompleta($encuesta) {
@@ -173,7 +173,7 @@ class OfertaController extends FosRestController
                            ->setTo($mail)
                            ->setBody("
                                 <span lang='ES-AR'>
-                                    <a href='http://localhost:4200/encuesta/$token' target='_blank' rel='noreferrer'>
+                                    <a href='https://arq-soft-encuesta-frontend.herokuapp.com/encuesta/$token' target='_blank' rel='noreferrer'>
                                     <b>
                                         <span style='font-size: 16.0pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; color: #0070C0'>
                                             CLICK AQUÍ: ACCESO A LA ENCUESTA

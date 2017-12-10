@@ -34,7 +34,7 @@ class EncuestaController extends Controller
 
 	   $dm->persist($encuesta);
 	   $dm->flush();
-	   return new View(array("respuesta" => $encuesta), Response::HTTP_OK);
+	   return new View($encuesta, Response::HTTP_OK);
 	}
 
 	/**
@@ -49,7 +49,7 @@ class EncuestaController extends Controller
 
 		$rta = array('encuestas_respondidas'=> $encuestas_respondidas, 'alumnos_regulares' => $alumnos_regulares);
 
-		return new View(array("respuesta" => $rta), Response::HTTP_OK);
+		return new View($rta, Response::HTTP_OK);
 	}
 
 	/**
@@ -63,7 +63,7 @@ class EncuestaController extends Controller
 		if ($tmpEncuesta === null) {
 			return new View("No existe una encuesta relacionada al token", Response::HTTP_NOT_FOUND);
 		}
-		return new View(array("respuesta" => $tmpEncuesta), Response::HTTP_OK);
+		return new View($tmpEncuesta, Response::HTTP_OK);
 	}
 
 	private function generarEncuesta($encuesta, $materias) {

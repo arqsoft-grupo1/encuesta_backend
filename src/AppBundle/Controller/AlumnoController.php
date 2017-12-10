@@ -41,8 +41,8 @@ class AlumnoController extends Controller{
         $dm = $this->get('doctrine_mongodb')->getManager();
         $alumno =  $dm->getRepository('AppBundle:Alumno')->findOneBy(array('token' => $token));
         if ($alumno === null) {
-            return new View(array("respuesta" => "No existe el alumno"), Response::HTTP_NOT_FOUND);
+            return new View("No existe el alumno", Response::HTTP_NOT_FOUND);
         }
-        return new View(array("alumno" => $alumno), Response::HTTP_OK);
+        return new View($alumno, Response::HTTP_OK);
     }
 }
