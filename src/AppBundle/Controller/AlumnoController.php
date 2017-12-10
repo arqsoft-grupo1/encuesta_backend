@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,13 +24,13 @@ class AlumnoController extends Controller{
         if ($alumno === null) {
             return new View(array("respuesta" => "No existe el alumno"), Response::HTTP_NOT_FOUND);
         }
-        return new View($alumno, Response::HTTP_OK);
+        return new View(array("alumno" => $alumno), Response::HTTP_OK);
     }
 
     /**
-    * @Rest\Put("/api/alumno/{legajo}")
+    * @Rest\Put("/api/alumno/{legajo}/{mail}")
     */
-    public function updateAction(Request $request, $legajo)
+    public function updateAction(Request $request, $legajo, $mail)
     {
        $dm = $this->get('doctrine_mongodb')->getManager();
        $alumno =  $dm->getRepository('AppBundle:Alumno')->findOneBy(array('legajo' => +$legajo));
@@ -37,7 +38,7 @@ class AlumnoController extends Controller{
            return new View(array("respuesta" => +$legajo), Response::HTTP_NOT_FOUND);
        }
 
-       $alumno->setMail('marprg@gmail.com');
+       $alumno->setMail($mail);
 
 
        $dm->persist($alumno);

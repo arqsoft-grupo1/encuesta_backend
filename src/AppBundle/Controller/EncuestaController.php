@@ -31,7 +31,7 @@ class EncuestaController extends Controller
 
 		$rta = array('encuestas_respondidas'=> $encuestas_respondidas, 'alumnos_regulares' => $alumnos_regulares);
 
-		return new View($rta, Response::HTTP_OK);
+		return new View(array("respuesta" => $rta), Response::HTTP_OK);
 	}
 
 	/**
@@ -45,7 +45,7 @@ class EncuestaController extends Controller
 		if ($tmpEncuesta === null) {
 			return new View("No existe una encuesta relacionada al token", Response::HTTP_NOT_FOUND);
 		}
-		return new View($tmpEncuesta, Response::HTTP_OK);
+		return new View(array("respuesta" => $tmpEncuesta), Response::HTTP_OK);
 	}
 
 	private function generarEncuesta($encuesta, $materias) {
@@ -98,7 +98,7 @@ class EncuestaController extends Controller
 	 {
 		$dm = $this->get('doctrine_mongodb')->getManager();
 		$encuesta =  $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('token' => $token));
-		
+
 		// if (is_null($tmpEncuesta)) {
 			// $encuesta = new Encuesta();
 			$encuesta->setCuatrimestre('2017C2');
@@ -109,7 +109,7 @@ class EncuestaController extends Controller
 
 			$dm->persist($encuesta);
 			$dm->flush();
-			return new View($encuesta, Response::HTTP_OK);
+			return new View(array("respuesta" => $encuesta), Response::HTTP_OK);
 		// } else {
 		// 	return new View($tmpEncuesta, Response::HTTP_OK);
 
