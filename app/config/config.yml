@@ -89,7 +89,6 @@ nelmio_cors:
         max_age: 3600
         hosts: []
         origin_regex: false
-    
  # app/config/config.yml
  # Configuracion de Swagger ruta/api/doc
 nelmio_api_doc:
