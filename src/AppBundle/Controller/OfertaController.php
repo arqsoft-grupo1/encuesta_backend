@@ -165,6 +165,7 @@ class OfertaController extends FosRestController
         }
     }
 
+// <a href='http://arq-soft-encuesta-frontend.herokuapp.com/encuesta/$token' target='_blank' rel='noreferrer'>
     public function sendMail($mail, $token)
        {
            $message = (new \Swift_Message('Encuesta UNQ'))
@@ -173,7 +174,7 @@ class OfertaController extends FosRestController
                            ->setTo($mail)
                            ->setBody("
                                 <span lang='ES-AR'>
-                                    <a href='https://arq-soft-encuesta-frontend.herokuapp.com/encuesta/$token' target='_blank' rel='noreferrer'>
+                                    <a href='http://arq-soft-encuesta-frontend.herokuapp.com/encuesta/$token' target='_blank' rel='noreferrer'>
                                     <b>
                                         <span style='font-size: 16.0pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; color: #0070C0'>
                                             CLICK AQUÍ: ACCESO A LA ENCUESTA
