@@ -7,8 +7,8 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    mongodb_server: "mongodb://mongo:mongo123@ds135486.mlab.com:35486/encuesta_academica"
     # mongodb_server: "mongodb://localhost:27017"
-      mongodb_server: "mongodb://mongo:mongo123@ds135486.mlab.com:35486/encuesta_academica"
 
 framework:
     #esi: ~
@@ -90,8 +90,9 @@ nelmio_cors:
         max_age: 3600
         hosts: []
         origin_regex: false
+        forced_allow_origin_value: ~
     paths:
-            '^/api/':
+        '^/api/':
             allow_origin: ['*']
             allow_headers: ['X-Custom-Auth']
             allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
