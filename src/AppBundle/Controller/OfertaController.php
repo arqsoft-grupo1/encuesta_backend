@@ -47,30 +47,34 @@ class OfertaController extends FosRestController
        $encuesta = $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('token' => $token));
        $alumno = $dm->getRepository('AppBundle:Alumno')->findOneBy(array('token' => $token));
 
-       if (is_null($encuesta)) {
-           $encuesta = new Encuesta();
-           $encuesta->setToken($token);
-           $dm->persist($encuesta);
-           $dm->flush();
+       if(!is_null($alumno)) {
+           if (is_null($encuesta)) {
+               $encuesta = new Encuesta();
+               $encuesta->setToken($token);
+               $dm->persist($encuesta);
+               $dm->flush();
 
-           $oferta = new Oferta();
-           $this->generarPrimerOfertaDeLaCarrera($encuesta, $oferta, $token);
-
-           return new View(array("oferta"=> $oferta->getMaterias()), Response::HTTP_OK);
-       } else {
-           if($this->ExisteEncuestaCompleta($encuesta)) {
-               /*Modificacion de encuesta*/
-               $oferta = new Oferta();
-               $this->generarOfertaConEncuestaModificacion($encuesta, $oferta);
-               return new View(array("oferta"=> $oferta->getMaterias()), Response::HTTP_OK);
-           } else {
-               /*Genera la primer oferta de la carrera, ya que no existen anteriores ni actuales*/
                $oferta = new Oferta();
                $this->generarPrimerOfertaDeLaCarrera($encuesta, $oferta, $token);
-               return new View(array("oferta"=> $oferta->getMaterias()), Response::HTTP_OK);
-           }
 
-           return new View(array("respuesta"=> "Hay encuesta"), Response::HTTP_OK);
+               return new View(array("oferta"=> $oferta->getMaterias()), Response::HTTP_OK);
+           } else {
+               if($this->ExisteEncuestaCompleta($encuesta)) {
+                   /*Modificacion de encuesta*/
+                   $oferta = new Oferta();
+                   $this->generarOfertaConEncuestaModificacion($encuesta, $oferta);
+                   return new View(array("oferta"=> $oferta->getMaterias()), Response::HTTP_OK);
+               } else {
+                   /*Genera la primer oferta de la carrera, ya que no existen anteriores ni actuales*/
+                   $oferta = new Oferta();
+                   $this->generarPrimerOfertaDeLaCarrera($encuesta, $oferta, $token);
+                   return new View(array("oferta"=> $oferta->getMaterias()), Response::HTTP_OK);
+               }
+
+               return new View(array("respuesta"=> "Hay encuesta"), Response::HTTP_OK);
+           }
+       } else {
+           return new View("No existe el alumno", Response::HTTP_NOT_FOUND);
        }
 
    }
