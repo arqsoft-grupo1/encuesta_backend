@@ -8,7 +8,7 @@ imports:
 parameters:
     locale: en
     # mongodb_server: "mongodb://localhost:27017"
-      mongodb_server: "mongodb://<dbuser>:<dbpassword>@ds135486.mlab.com:35486/encuesta_academica"
+      mongodb_server: "mongodb://mongo:mongo123@ds135486.mlab.com:35486/encuesta_academica"
 
 framework:
     #esi: ~
