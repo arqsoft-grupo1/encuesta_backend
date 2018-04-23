@@ -18,21 +18,13 @@ class EncuestaService
         $legajo = $encuesta->getToken();
         $fichero = "$this->path$legajo.json";
 
-        // $encuesta = $data->getEncuesta();
-
-        // var_dump($data);
-
         file_put_contents($fichero, $encuesta, FILE_APPEND | LOCK_EX);
-
     }
 
     function getEncuestaByToken($token) {
         $file = "$this->path$token.json";
-        // var_dump($file);
         $restresult = file_get_contents($file);
 
         return $restresult;
-
     }
-
 }

@@ -20,9 +20,7 @@ class DirectorController extends Controller{
     public function getAction($email){
         $dm = $this->get('doctrine_mongodb')->getManager();
         $director =  $dm->getRepository('AppBundle:Director')->findOneBy(array('email' => $email));
-        if ($director === null) {
-            // return new View("No existe el director", Response::HTTP_NOT_FOUND);
-        }
+        
         return new View($director, Response::HTTP_OK);
     }
 

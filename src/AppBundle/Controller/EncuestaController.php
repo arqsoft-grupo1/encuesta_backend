@@ -18,6 +18,24 @@ use AppBundle\Document\MateriaEncuesta as MateriaEncuesta;
 
 class EncuestaController extends Controller
 {
+	/**
+	* @Rest\Put("/api/encuesta/{token}")
+	*/
+	public function updateAction(Request $request, $token)
+	{
+	   $dm = $this->get('doctrine_mongodb')->getManager();
+	   $encuesta =  $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('token' => $token));
+	   //
+	   $encuesta->setCuatrimestre('2017C2');
+	   $encuesta->setLegajo($request->get('legajo'));
+	   $encuesta->setToken($token);
+
+	   $encuesta = $this->completarEncuesta($encuesta, $request);
+
+	   $dm->persist($encuesta);
+	   $dm->flush();
+	   return new View($encuesta, Response::HTTP_OK);
+	}
 
 	/**
 	* @Rest\Get("/api/encuesta/porcentaje_respuestas/")
@@ -51,7 +69,7 @@ class EncuestaController extends Controller
 	private function generarEncuesta($encuesta, $materias) {
 		$tmpmaterias = [];
 		$dm = $this->get('doctrine_mongodb')->getManager();
-		$alumno = $dm->getRepository('AppBundle:Alumno')->findOneBy(array('legajo' => $encuesta->getLegajo()));
+		$alumno = $dm->getRepository('AppBundle:Alumno')->findOneBy(array('token' => $encuesta->getToken()));
 		foreach ($materias as $tmpMateria) {
 			$materia = $dm->getRepository('AppBundle:Materia')->findOneBy(array('nombre' => $tmpMateria['nombre']));
 			$matEncuesta = new MateriaEncuesta();
@@ -91,43 +109,4 @@ class EncuestaController extends Controller
 
 		return $encuesta;
 	}
-	 /**
-	 * @Rest\Put("/api/encuesta/{token}")
-	 */
-	 public function updateAction(Request $request, $token)
-	 {
-		$dm = $this->get('doctrine_mongodb')->getManager();
-		$encuesta =  $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('token' => $token));
-		// if (is_null($tmpEncuesta)) {
-			// $encuesta = new Encuesta();
-			$encuesta->setCuatrimestre('2017C2');
-			$encuesta->setLegajo($request->get('legajo'));
-			$encuesta->setToken($token);
-
-			$encuesta = $this->completarEncuesta($encuesta, $request);
-
-			$dm->persist($encuesta);
-			$dm->flush();
-			return new View($encuesta, Response::HTTP_OK);
-		// } else {
-		// 	return new View($tmpEncuesta, Response::HTTP_OK);
-
-
-	 }
-
-	//  /**
-	// * @Rest\Put("/api/encuesta/{token}")
-	// */
-	// public function updateAction(Request $request, $token)
-	// {
-	// 	// $service = $this->get(EncuestaService::class);
-	// 	$dm = $this->get('doctrine_mongodb')->getManager();
-	// 	$encuesta = $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('token' => $token));
-	// 	if (empty($encuesta)) {
-	// 	    return new View("La encuesta no ha sido respondida aun", Response::HTTP_NOT_FOUND);
-	// 	}
-	// 	$encuesta = $this->completarEncuesta($encuesta, $request);
-	//
-	// 	return new View($encuesta, Response::HTTP_OK);
-	// }
 }
