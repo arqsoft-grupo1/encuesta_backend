@@ -20,6 +20,7 @@ use AppBundle\Document\MateriaEncuesta;
 class OfertaController extends FosRestController
 {
     /**
+    * Crea la Oferta academica general
     * @Rest\Post("/api/oferta")
     */
     public function postAction(){
@@ -39,9 +40,12 @@ class OfertaController extends FosRestController
     }
 
     /**
-    * @Rest\Get("/api/oferta/{token}")
+    * Genera la oferta solicitada y le setea el token
+    * Armando los tres grupos de materias, aprobadas, a cursar y
+    * no voy a cursar para dicho legajo
+    * @Rest\Put("/api/oferta/{token}")
     */
-   public function getAction($token)
+   public function putAction($token)
    {
        $dm = $this->get('doctrine_mongodb')->getManager();
        $encuesta = $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('token' => $token));
@@ -79,6 +83,9 @@ class OfertaController extends FosRestController
 
    }
     /**
+    * Devuelve el token generado para el email solicitante
+    * A su vez envia el mail correspondiente a la encuesta al mail que lo solicitante
+    *
     * @Rest\Get("/api/oferta/token/{mail}")
     */
     public function getTokenAction($mail) {
