@@ -21,9 +21,12 @@ services:
 
   composer:
     image: composer:1.4
+    environment:
+      - SYMFONY_ENV=prod
     volumes_from:
       - php
     working_dir: /var/www/app
+    command: composer install --ignore-platform-reqs
 
   mongodb:
     image: mongo:latest

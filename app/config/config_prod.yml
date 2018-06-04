@@ -20,3 +20,9 @@ monolog:
         console:
             type: console
             process_psr_3_messages: false
+#        loggly:
+#            level: error
+#            handler: loggly
+#            type: loggly
+#            token: 8e33c249-1534-466c-9be1-9c5d0e59edb4
+#            tag: encuesta-app
