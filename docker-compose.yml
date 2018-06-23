@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   php:
     build: ./docker/php/
@@ -12,21 +12,21 @@ services:
     image: nginx:1.11
     depends_on:
       - php
-    volumes_from:
-      - php
     volumes:
       - ./docker/nginx/app.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./:/var/www/app
     ports:
       - 8080:80
 
   composer:
-    image: composer:1.4
+    image: composer
     environment:
       - SYMFONY_ENV=prod
-    volumes_from:
-      - php
     working_dir: /var/www/app
     command: composer install --ignore-platform-reqs
+    volumes:
+    #   - ./docker/php/php.ini:/usr/local/etc/php/php.ini:ro
+      - ./:/var/www/app
 
   mongodb:
     image: mongo:latest
