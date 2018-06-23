@@ -1,4 +1,4 @@
-version: '3'
+version: '2.2'
 services:
   php:
     build: ./docker/php/
@@ -7,6 +7,9 @@ services:
     #   - ./docker/php/php.ini:/usr/local/etc/php/php.ini:ro
       - ./:/var/www/app
     working_dir: /var/www/app
+    cpus: 0.7
+    cpu_shares: 25
+
 
   webserver:
     image: nginx:1.11
@@ -17,6 +20,7 @@ services:
       - ./:/var/www/app
     ports:
       - 8080:80
+
 
   composer:
     image: composer
