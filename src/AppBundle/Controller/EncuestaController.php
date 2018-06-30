@@ -25,7 +25,7 @@ class EncuestaController extends Controller
 	{
 	   $dm = $this->get('doctrine_mongodb')->getManager();
 	   $encuesta =  $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('token' => $token));
-	   $alu = $dm->getRepository('AppBundle:Alumno')->findOneBy(array('token' => $encuesta->getToken()));
+	   //$alu = $dm->getRepository('AppBundle:Alumno')->findOneBy(array('token' => $encuesta->getToken()));
 
 	   $encuesta->setCuatrimestre('2017C2');
 	   $encuesta->setLegajo($request->get('legajo'));
@@ -67,10 +67,9 @@ class EncuestaController extends Controller
 		return new View($tmpEncuesta, Response::HTTP_OK);
 	}
 
-	private function generarEncuesta($encuesta, $materias) {
+	private function generarEncuesta($encuesta, $materias, $alumno) {
 		$tmpmaterias = [];
 		$dm = $this->get('doctrine_mongodb')->getManager();
-		$alumno = $dm->getRepository('AppBundle:Alumno')->findOneBy(array('token' => $encuesta->getToken()));
 		foreach ($materias as $tmpMateria) {
 			$materia = $dm->getRepository('AppBundle:Materia')->findOneBy(array('nombre' => $tmpMateria['nombre']));
 			$matEncuesta = new MateriaEncuesta();
@@ -88,24 +87,27 @@ class EncuestaController extends Controller
 		return $tmpmaterias;
 	}
 	private function completarEncuesta($encuesta, $request) {
+		$dm = $this->get('doctrine_mongodb')->getManager();
+		$alumno = $dm->getRepository('AppBundle:Alumno')->findOneBy(array('token' => $encuesta->getToken()));
+
 		// Agrega materias aprobadas en la encuesta //
 		$materias_aprobadas = $request->get('materias_aprobadas');
-		$mat_aprob = $this->generarEncuesta($encuesta, $materias_aprobadas);
+		$mat_aprob = $this->generarEncuesta($encuesta, $materias_aprobadas, $alumno);
 		$encuesta->setMateriasAprobadas($mat_aprob);
 
 		//Agrega materias "todaviano" en la encuesta //
 		$materias_todaviano = $request->get('materias_todaviano');
-		$mat_todaviano = $this->generarEncuesta($encuesta, $materias_todaviano);
+		$mat_todaviano = $this->generarEncuesta($encuesta, $materias_todaviano, $alumno);
 		$encuesta->setMateriasTodaviaNo($mat_todaviano);
 
 		// Agrega materias "nopuedohorario" en la encuesta //
 		$materias_nopuedoporhorario = $request->get('materias_no_puedoporhorario');
-		$mat_nopuedohorario = $this->generarEncuesta($encuesta, $materias_nopuedoporhorario);
+		$mat_nopuedohorario = $this->generarEncuesta($encuesta, $materias_nopuedoporhorario, $alumno);
 		$encuesta->setMateriasNoPuedoporhorario($mat_nopuedohorario);
 
 		// Agrega materias "nopuedohorario" en la encuesta //
 		$materias_a_cursar = $request->get('materias_a_cursar');
-		$mat_a_cursar = $this->generarEncuesta($encuesta, $materias_a_cursar);
+		$mat_a_cursar = $this->generarEncuesta($encuesta, $materias_a_cursar, $alumno);
 		$encuesta->setMateriasACursar($mat_a_cursar);
 
 		return $encuesta;
