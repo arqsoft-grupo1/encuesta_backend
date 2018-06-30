@@ -25,7 +25,8 @@ class EncuestaController extends Controller
 	{
 	   $dm = $this->get('doctrine_mongodb')->getManager();
 	   $encuesta =  $dm->getRepository('AppBundle:Encuesta')->findOneBy(array('token' => $token));
-	   //
+	   $alu = $dm->getRepository('AppBundle:Alumno')->findOneBy(array('token' => $encuesta->getToken()));
+
 	   $encuesta->setCuatrimestre('2017C2');
 	   $encuesta->setLegajo($request->get('legajo'));
 	   $encuesta->setToken($token);
