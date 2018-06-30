@@ -105,7 +105,7 @@ class OfertaController extends FosRestController
                 $dm->flush();
             }
 
-            $this->sendMail($mail, $alumno->getToken());
+            //$this->sendMail($mail, $alumno->getToken());
 
             return new View($alumno->getToken(), Response::HTTP_OK);
         }
@@ -171,8 +171,10 @@ class OfertaController extends FosRestController
 
     private function agregarMateriasAOferta($oferta, $materias, $estado) {
         foreach ($materias as $materia) {
-            $materia->getMateria()->setEstado($estado);
-            $oferta->addMateria($materia->getMateria());
+            if(!is_null($materia->getMateria())) {
+                $materia->getMateria()->setEstado($estado);
+                $oferta->addMateria($materia->getMateria());
+            }
         }
     }
 
