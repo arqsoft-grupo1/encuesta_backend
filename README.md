@@ -1,74 +1,168 @@
-Symfony Standard Edition
+Encuesta backend
 ========================
+# Test de performance
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
+| Servicio   | cpu_quota  | cpu_set| Mem_*  |
+| ---------- | ---------- | --     | --     |
+| web        | libre      | libre  | libre  |   
+| mongo      | libre      | libre  | libre  |
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+#### Test 1
+Usuario : 700
+RampUp  : 120
 
-What's inside?
---------------
+** Resumen resultado **
 
-The Symfony Standard Edition is configured with the following defaults:
+| Samples   | Average    | Min   | Max    | Std dev  | Error % |
+| ----------| ---------- | --    | --     |          |         |
+| 2100      |  15712     | 0     |  91465 | 14397.42 | 0.091   |  
 
-  * An AppBundle you can use to start coding;
+#### Test 2
+Usuario : 600
+RampUp  : 120
 
-  * Twig as the only configured template engine;
+** Resumen resultado **
 
-  * Doctrine ORM/DBAL;
+| Samples   | Average    | Min   | Max    | Std dev  | Error % |
+| ----------| ---------- | --    | --     |          |         |
+| 1800      |  11236     | 0     |  60006 | 8623.35  | 0.015   |  
 
-  * Swiftmailer;
+#### Test 3
+Usuario : 500
+RampUp  : 120
 
-  * Annotations enabled for everything.
+** Resumen resultado **
 
-It comes pre-configured with the following bundles:
+| Samples   | Average    | Min   | Max    | Std dev  | Error % |
+| ----------| ---------- | --    | --     |          |         |
+| 1500      |  8035      | 95     |  17333| 4360.95  |    0    |  
 
-  * **FrameworkBundle** - The core Symfony framework bundle
+#### Test limitación docker (Memoria)
 
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
+| Servicio   | cpu_quota  | cpu_set| mem_limit  |
+| ---------- | ---------- | --     | --         |
+| web        | libre      | libre  | 1024m      |   
+| mongo      | libre      | libre  | libre      |
 
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
+#### Test 1
+Usuario : 500
+RampUp  : 120
 
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
+** Resumen resultado **
 
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
+| Samples   | Average    | Min   | Max    | Std dev  | Error % |
+| ----------| ---------- | --    | --     |          |         |
+| 1500      |  15173     | 0     |  60012 | 10603.46 |  2.13%  |
+------------------------------------------------------------------
 
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
+| Servicio   | cpu_quota  | cpu_set| mem_limit  |
+| ---------- | ---------- | --     | --         |
+| web        | libre      | libre  | 2048m      |   
+| mongo      | libre      | libre  | libre      |
 
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
+#### Test 1
+Usuario : 500
+RampUp  : 120
 
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
+** Resumen resultado **
 
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
+| Samples   | Average    | Min   | Max    | Std dev  | Error % |
+| ----------| ---------- | --    | --     |          |         |
+| 1500      |  15173     | 0     |  60012 | 10603.46 |  2.13%  |
 
-  * [**SensioGeneratorBundle**][13] (in dev env) - Adds code generation
-    capabilities
+#### Test limitación docker
 
-  * [**WebServerBundle**][14] (in dev env) - Adds commands for running applications
-    using the PHP built-in web server
+| Servicio   | cpu_quota  | cpu_set| Mem_*  |
+| ---------- | ---------- | --     | --     |
+| web        | 200000     | 0,1    | libre  |   
+| mongo      | 50000      | 2      | libre  |
 
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
+Dos procesadores al 100%
 
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
+#### Test 1
+Usuario : 500
+RampUp  : 120
 
-Enjoy!
+** Resumen resultado **
 
-[1]:  https://symfony.com/doc/3.3/setup.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/3.3/doctrine.html
-[8]:  https://symfony.com/doc/3.3/templating.html
-[9]:  https://symfony.com/doc/3.3/security.html
-[10]: https://symfony.com/doc/3.3/email.html
-[11]: https://symfony.com/doc/3.3/logging.html
-[13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
-[14]: https://symfony.com/doc/current/setup/built_in_web_server.html
+| Samples   | Average    | Min   | Max    | Std dev  | Error % |
+| ----------| ---------- | --    | --     |          |         |
+| 1500      |  27232     | 0     |  91587 | 19878.81 | 18.53%  |  
+
+#### Test 2
+Usuario : 400
+RampUp  : 120
+
+** Resumen resultado **
+
+| Samples   | Average    | Min   | Max    | Std dev  | Error % |
+| ----------| ---------- | --    | --     |          |         |
+| 1200      |   24154    | 0     |  77224 | 16161.58 | 5.58%   |
+
+#### Test 3
+Usuario : 350
+RampUp  : 120
+
+** Resumen resultado **
+
+| Samples   | Average    | Min   | Max    | Std dev  | Error % |
+| ----------| ---------- | --    | --     |          |         |
+| 1050      |   20673    | 0     |  66877 | 12611.54 | 1.64%   |  
+
+
+#### Test 3
+Usuario : 300
+RampUp  : 120
+
+** Resumen resultado **
+
+| Samples   | Average    | Min   | Max    | Std dev  | Error % |
+| ----------| ---------- | --    | --     |          |         |
+| 900       |   15503    | 127   |  30530 | 8636.55  | 0%      |
+
+
+***************************************
+Dos CPU al 50%
+
+| Servicio   | cpu_quota  | cpu_set| Mem_*  |
+| ---------- | ---------- | --     | --     |
+| web        | 100000     | 0,1    | libre  |   
+| mongo      | 50000      | 2      | libre  |
+
+#### Test 6
+Usuario : 500
+RampUp  : 120
+
+** Resumen resultado **
+
+| Samples   | Average    | Min   | Max    | Std dev  | Error % |
+| ----------| ---------- | --    | --     |          |         |
+| 1500      |  36462     | 0    |  91622 | 26624.10  | 55.87%  |  
+
+
+#### Test 7
+Usuario : 200
+RampUp  : 120
+
+** Resumen resultado **
+
+| Samples   | Average    | Min   | Max    | Std dev  | Error % |
+| ----------| ---------- | --    | --     |          |         |
+| 600       |  27712     | 122    |  56425| 15879.23 | 0%  |  
+
+
+------------
+
+
+
+
+
+
+
+
+
+
+
+
 # encuesta_backend
  docker-compose up
