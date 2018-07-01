@@ -153,15 +153,15 @@ Resumen resultado
 
 ------------
 
-![Texto alternativo](https://github.com/arqsoft-grupo1/encuesta_backend/tree/master/doc/monitoreo/breakdowntable.png)
+![Texto alternativo](/doc/monitoreo/breakdowntable.png)
 
-![Texto alternativo](https://github.com/arqsoft-grupo1/encuesta_backend/tree/master/doc/monitoreo/throughput.png)
+![Texto alternativo](/doc/monitoreo/throughput.png)
 
-![Texto alternativo](https://github.com/arqsoft-grupo1/encuesta_backend/tree/master/doc/monitoreo/top5webtransactions.png)
+![Texto alternativo](/doc/monitoreo/top5webtransactions.png)
 
-![Texto alternativo](https://github.com/arqsoft-grupo1/encuesta_backend/tree/master/doc/monitoreo/transactions.png)
+![Texto alternativo](/doc/monitoreo/transactions.png)
 
-![Texto alternativo](https://github.com/arqsoft-grupo1/encuesta_backend/tree/master/doc/monitoreo/webtransactionstime.png)
+![Texto alternativo](/doc/monitoreo/webtransactionstime.png)
 
 # encuesta_backend
  docker-compose up
