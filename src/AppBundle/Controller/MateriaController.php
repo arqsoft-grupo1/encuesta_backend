@@ -20,7 +20,9 @@ use AppBundle\Document\Director as Director;
 class MateriaController extends Controller
 {
     /**
-    * @Rest\Post("/api/materia")
+    * Crea el director, las materias y las comisiones
+    *
+    * @Rest\Post("/api/configuracionInicial")
     */
     public function postAction(){
         $dm = $this->get('doctrine_mongodb')->getManager();

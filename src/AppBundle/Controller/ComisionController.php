@@ -22,6 +22,7 @@ class ComisionController extends Controller
     * @Rest\Get("/api/comision/")
     */
     public function getComisionesPorOrdenInscriptosAction(){
+        //$this->get('logger')->error('Error prueba');
         $dm = $this->get('doctrine_mongodb')->getManager();
         $comisiones =  $dm->getRepository('AppBundle:Comision')->findAll();
         usort($comisiones, array($this, 'cmpInscriptos'));
