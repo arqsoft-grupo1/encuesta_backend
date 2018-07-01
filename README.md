@@ -163,5 +163,4 @@ Resumen resultado
 
 ![Texto alternativo](/doc/monitoreo/webtransactionstime.png)
 
-# encuesta_backend
- docker-compose up
+docker-compose up
