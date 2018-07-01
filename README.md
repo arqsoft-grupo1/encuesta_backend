@@ -11,7 +11,7 @@ Encuesta backend
 Usuario : 700
 RampUp  : 120
 
-** Resumen resultado **
+Resumen resultado
 
 | Samples   | Average    | Min   | Max    | Std dev  | Error % |
 | ----------| ---------- | --    | --     |          |         |
@@ -21,7 +21,7 @@ RampUp  : 120
 Usuario : 600
 RampUp  : 120
 
-** Resumen resultado **
+Resumen resultado
 
 | Samples   | Average    | Min   | Max    | Std dev  | Error % |
 | ----------| ---------- | --    | --     |          |         |
@@ -31,7 +31,7 @@ RampUp  : 120
 Usuario : 500
 RampUp  : 120
 
-** Resumen resultado **
+Resumen resultado
 
 | Samples   | Average    | Min   | Max    | Std dev  | Error % |
 | ----------| ---------- | --    | --     |          |         |
@@ -48,7 +48,7 @@ RampUp  : 120
 Usuario : 500
 RampUp  : 120
 
-** Resumen resultado **
+Resumen resultado
 
 | Samples   | Average    | Min   | Max    | Std dev  | Error % |
 | ----------| ---------- | --    | --     |          |         |
@@ -64,7 +64,7 @@ RampUp  : 120
 Usuario : 500
 RampUp  : 120
 
-** Resumen resultado **
+Resumen resultado
 
 | Samples   | Average    | Min   | Max    | Std dev  | Error % |
 | ----------| ---------- | --    | --     |          |         |
@@ -83,7 +83,7 @@ Dos procesadores al 100%
 Usuario : 500
 RampUp  : 120
 
-** Resumen resultado **
+Resumen resultado
 
 | Samples   | Average    | Min   | Max    | Std dev  | Error % |
 | ----------| ---------- | --    | --     |          |         |
@@ -93,7 +93,7 @@ RampUp  : 120
 Usuario : 400
 RampUp  : 120
 
-** Resumen resultado **
+Resumen resultado
 
 | Samples   | Average    | Min   | Max    | Std dev  | Error % |
 | ----------| ---------- | --    | --     |          |         |
@@ -103,7 +103,7 @@ RampUp  : 120
 Usuario : 350
 RampUp  : 120
 
-** Resumen resultado **
+Resumen resultado
 
 | Samples   | Average    | Min   | Max    | Std dev  | Error % |
 | ----------| ---------- | --    | --     |          |         |
@@ -114,7 +114,7 @@ RampUp  : 120
 Usuario : 300
 RampUp  : 120
 
-** Resumen resultado **
+Resumen resultado
 
 | Samples   | Average    | Min   | Max    | Std dev  | Error % |
 | ----------| ---------- | --    | --     |          |         |
@@ -133,7 +133,7 @@ Dos CPU al 50%
 Usuario : 500
 RampUp  : 120
 
-** Resumen resultado **
+Resumen resultado
 
 | Samples   | Average    | Min   | Max    | Std dev  | Error % |
 | ----------| ---------- | --    | --     |          |         |
@@ -144,7 +144,7 @@ RampUp  : 120
 Usuario : 200
 RampUp  : 120
 
-** Resumen resultado **
+Resumen resultado
 
 | Samples   | Average    | Min   | Max    | Std dev  | Error % |
 | ----------| ---------- | --    | --     |          |         |
@@ -152,17 +152,6 @@ RampUp  : 120
 
 
 ------------
-
-
-
-
-
-
-
-
-
-
-
 
 # encuesta_backend
  docker-compose up
