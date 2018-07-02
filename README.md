@@ -60,7 +60,7 @@ Resumen resultado
 | web        | libre      | libre  | 2048m      |   
 | mongo      | libre      | libre  | libre      |
 
-#### Test 1
+#### Test 2
 Usuario : 500
 RampUp  : 120
 
@@ -110,7 +110,7 @@ Resumen resultado
 | 1050      |   20673    | 0     |  66877 | 12611.54 | 1.64%   |  
 
 
-#### Test 3
+#### Test 4
 Usuario : 300
 RampUp  : 120
 
@@ -129,7 +129,7 @@ Dos CPU al 50%
 | web        | 100000     | 0,1    | libre  |   
 | mongo      | 50000      | 2      | libre  |
 
-#### Test 6
+#### Test 1
 Usuario : 500
 RampUp  : 120
 
@@ -140,7 +140,7 @@ Resumen resultado
 | 1500      |  36462     | 0    |  91622 | 26624.10  | 55.87%  |  
 
 
-#### Test 7
+#### Test 2
 Usuario : 200
 RampUp  : 120
 
