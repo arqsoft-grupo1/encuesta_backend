@@ -163,4 +163,40 @@ Resumen resultado
 
 ![Texto alternativo](/doc/monitoreo/webtransactionstime.png)
 
-docker-compose up
+----------------------------------------------------
+
+## Conclusiones
+Luego de estos resultados provistos anteriormente, para bajar tiempos de respuesta sacamos de la respuesta del encuesta_update el json que retornaba la encuesta respondida, esta respuesta no se utilizaba, por lo tanto simplemente retornamos que se actualizo correctamente, logrando un descenso considerable en el tiempo de respuesta.  
+Luego de esto limitamos el uso a 2 CPU y 2048MB de memoria para el container utilizado para PHP y 1 CPU con 1024MB de memoria para el contariner que utiliza la base de datos (mongo). Los resultados fueron los siguientes sin errores.
+
+#### Test final
+* Usuario : 100  
+* RampUp  : 60  
+* Tiempo  : 15'
+
+100 usuarios concurrentes por un tiempo de 15 minutos
+
+Resumen resultado
+
+| Samples   | Average    | Min   | Max    | Std dev  | Error % |
+| ----------| ---------- | --    | --     | --       | --      |
+| 3719      |  23776     | 162   |  33058 | 5391.32  |    0    |  
+
+Por lo tanto para un rendimiento optimo con 0% de error la configuración correcta seria la siguiente
+
+* PHP:  
+      2 Cores al 100%  
+      2 GB Ram de memoria  
+* Mongo:  
+      1 Core al 50%  
+      1 GB Ram de memoria  
+
+Agregamos resultados finales basados en monitoreo de la aplicación con la configuración antes mencionada
+
+![Texto alternativo](/doc/monitoreo/webtransactionsLimitado.png)
+
+![Texto alternativo](/doc/monitoreo/throughputLimitado.png)
+
+![Texto alternativo](/doc/monitoreo/top5webtransactionsLimitado.png)
+
+![Texto alternativo](/doc/monitoreo/transactionsLimitado.png)
