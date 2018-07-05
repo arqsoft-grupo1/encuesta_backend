@@ -166,7 +166,7 @@ Resumen resultado
 ----------------------------------------------------
 
 ## Conclusiones
-Luego de los resultados provistos anteriormente, para bajar tiempos, sacamos de encuesta_update el json de la misma, esta, no se utilizaba, por lo tanto simplemente devolvemos a modo de notificación, que se actualizo correctamente, logrando un descenso considerable en el tiempo.  
+Luego de los resultados provistos anteriormente, para bajar tiempos, sacamos de encuesta_update el json de respuesta ya que no se utilizaba.  Por lo tanto simplemente devolvemos a modo de notificación que se actualizo correctamente, logrando un descenso considerable en el tiempo.  
 Luego de esto limitamos el uso a 2 CPU y 2048MB de memoria para el container utilizado para PHP y 1 CPU con 1024MB de memoria para el contariner que utiliza la base de datos (mongo). Los resultados fueron los siguientes sin errores.
 
 #### Test final
